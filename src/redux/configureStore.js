@@ -1,21 +1,23 @@
-// import { createStore, applyMiddleware, compose } from "redux";
-// import rootReducer from "./reducers";
-// import { forbiddenWordsMiddleware } from "./middlewares"
-//
-// const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//
-// const store = createStore(
-//     rootReducer,
-//     storeEnhancer(applyMiddleware(forbiddenWordsMiddleware))
-// );
-//
-// export default store;
-
 import { createStore, compose } from "redux";
-import rootReducer from "./reducers";
 
-const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import { initialState, rootReducer } from './reducers'
 
-const store = createStore(rootReducer);
+//future enhancers middlewares will go here
+const enhancers = [
 
-export default store;
+];
+
+//OPTIONAL configuration of dev-tools
+const reduxDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+if (
+  process.env.NODE_ENV === "development" &&
+  typeof reduxDevToolsExtension === "function"
+) {
+  enhancers.push(reduxDevToolsExtension())
+}
+
+const composedEnhancers = compose(
+  ...enhancers
+);
+
+export const store = createStore(rootReducer, initialState, composedEnhancers);

@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import {BrowserRouter, Route, Switch} from "react-router-dom";
 import { Provider } from 'react-redux'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 
-import indexRoutes from "./router/index.jsx";
+import { store } from "./redux/configureStore";
+import { rrfProps } from "./firebase";
+import AuthButton from "./components/examples/AuthButton";
+import AddCategory from "./components/examples/AddCategory";
+import CategoryList from "./components/examples/CategoryList";
+import ExpenseList from "./components/examples/ExpenseList";
 
-const App = ({ store }) => (
+const App = () => (
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        {
-          indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;})
-        }
-      </Switch>
-    </BrowserRouter>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <AuthButton />
+      <AddCategory />
+      <CategoryList />
+      <ExpenseList/>
+    </ReactReduxFirebaseProvider>
   </Provider>
 );
-
-App.propTypes = {
-  store: PropTypes.object.isRequired
-};
 
 export default App;
