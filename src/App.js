@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 
 import { store } from "./redux/configureStore";
 import { rrfProps } from "./firebase";
-import AuthButton from "./components/examples/AuthButton";
-import AddCategory from "./components/examples/AddCategory";
-import CategoryList from "./components/examples/CategoryList";
-import ExpenseList from "./components/examples/ExpenseList";
+import indexRoutes from "./router";
 
 const App = () => (
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <AuthButton />
-      <AddCategory />
-      <CategoryList />
-      <ExpenseList/>
+      <BrowserRouter>
+        <Switch>
+          {
+            indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;})
+          }
+        </Switch>
+      </BrowserRouter>
     </ReactReduxFirebaseProvider>
   </Provider>
 );

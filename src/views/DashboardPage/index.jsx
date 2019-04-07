@@ -17,7 +17,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './views/SideNav';
 import DashboardView from './views/DashboardView'
 import {Route, Switch} from "react-router-dom";
-import dashboardRoutes from "../../router/dashboard";
+import dashboardRoutes from "../../router/intraRoutes";
 import indexRoutes from "../../router";
 import {styles} from "./styles";
 
@@ -94,7 +94,6 @@ class DashboardPage extends React.Component {
 
           <Switch>
             {dashboardRoutes.map((prop, key) => {
-              console.log(`${this.props.match.url}${prop.path}`);
               return <Route path={`${this.props.match.url}${prop.path}`} key={key} component={prop.component}/>;
             })}
           </Switch>

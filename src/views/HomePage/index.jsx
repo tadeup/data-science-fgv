@@ -15,7 +15,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
-import BlogPost from './BlogPost';
+import PostList from './PostsList';
 import {styles} from './styles'
 
 
@@ -156,9 +156,10 @@ function Blog(props) {
                 From the Firehose
               </Typography>
               <Divider />
-              <BlogPost/>
+              <PostList/>
             </Grid>
             {/* End main content */}
+
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
               <Paper elevation={0} className={classes.sidebarAboutBox}>
