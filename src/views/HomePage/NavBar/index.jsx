@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { Link } from 'react-router-dom'
 import { withStyles} from "@material-ui/core";
 import {styles} from "../styles";
 import logo from '../../../assets/logo.svg'
@@ -21,6 +22,7 @@ class NavBar extends Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
+    const RouterLink = props => <Link to="/intra/login" {...props} />;
     return (
       <React.Fragment>
         <AppBar color={'default'}>
@@ -37,7 +39,9 @@ class NavBar extends Component {
                 <Tab label="Sobre" />
                 <Tab label="Eventos" />
               </Tabs>
-              <Button color="inherit">Login</Button>
+              <Button color="inherit" component={RouterLink}>
+                Intra
+              </Button>
             </Grid>
           </Toolbar>
         </AppBar>
