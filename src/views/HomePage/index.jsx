@@ -17,20 +17,7 @@ import Divider from '@material-ui/core/Divider';
 import Markdown from './Markdown';
 import PostList from './PostsList';
 import {styles} from './styles'
-
-
-const sections = [
-  'Technology',
-  'Design',
-  'Culture',
-  'Business',
-  'Politics',
-  'Opinion',
-  'Science',
-  'Health',
-  'Style',
-  'Travel',
-];
+import NavBar from "./NavBar";
 
 const featuredPosts = [
   {
@@ -71,32 +58,7 @@ function Blog(props) {
     <React.Fragment>
       <CssBaseline />
       <div className={classes.layout}>
-        <Toolbar className={classes.toolbarMain}>
-          <Button size="small">Subscribe</Button>
-          <Typography
-            component="h2"
-            variant="h5"
-            color="inherit"
-            align="center"
-            noWrap
-            className={classes.toolbarTitle}
-          >
-            Blog
-          </Typography>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-          <Button variant="outlined" size="small">
-            Sign up
-          </Button>
-        </Toolbar>
-        <Toolbar variant="dense" className={classes.toolbarSecondary}>
-          {sections.map(section => (
-            <Typography color="inherit" noWrap key={section}>
-              {section}
-            </Typography>
-          ))}
-        </Toolbar>
+        <NavBar/>
         <main>
           {/* Main featured post */}
           <Paper className={classes.mainFeaturedPost}>
