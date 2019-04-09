@@ -2,6 +2,12 @@ export const styles = theme => ({
   main: {
     marginTop: 12 + 'vh',
   },
+  postWraper: {
+    paddingBottom: 10,
+  },
+  postsList: {
+    paddingInlineStart: 0,
+  },
   layout: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,

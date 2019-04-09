@@ -55,5 +55,4 @@ class FormsView extends React.Component {
 
 }
 
-const styledView = withStyles(styles)(FormsView);
-export default connect(mapStateToProps, mapDispatchToProps)(styledView);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(FormsView));

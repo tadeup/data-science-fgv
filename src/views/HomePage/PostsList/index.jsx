@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { withStyles } from "@material-ui/core/styles";
 import PostElement from "./PostElement";
+import { styles } from "../styles";
 
 class PostsList extends Component {
   renderPost(post, key) {
@@ -15,7 +17,7 @@ class PostsList extends Component {
     const posts = this.props.posts.map((post, key) => this.renderPost(post, key));
     return (
       <div>
-        <ul>
+        <ul className={this.props.classes.postsList}>
           {posts}
         </ul>
       </div>
@@ -45,6 +47,7 @@ const mapDispatchToProps = {};
 
 
 export default compose(
+  withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect((props) => {
       return [

@@ -98,6 +98,7 @@ const mapDispatchToProps = dispatch => {
 
 
 export default compose(
+  withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps),
   firebaseConnect()
-)(withStyles(styles)(SignIn))
+)(SignIn)

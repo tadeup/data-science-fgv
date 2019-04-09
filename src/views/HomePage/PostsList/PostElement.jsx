@@ -15,7 +15,7 @@ const PostElement = ({post, classes}) => {
   const postDate = moment(post.postDate.toDate()).locale('pt-BR').format('DD MM YYYY');
   return (
     <React.Fragment>
-      <Grid item key={post.id} xs={12}>
+      <Grid item key={post.id} xs={12} className={classes.postWraper}>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
