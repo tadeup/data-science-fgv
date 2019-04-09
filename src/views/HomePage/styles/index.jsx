@@ -1,4 +1,7 @@
 export const styles = theme => ({
+  main: {
+    marginTop: 12 + 'vh',
+  },
   layout: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,

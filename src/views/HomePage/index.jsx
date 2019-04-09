@@ -59,7 +59,7 @@ function Blog(props) {
       <CssBaseline />
       <div className={classes.layout}>
         <NavBar/>
-        <main>
+        <main className={classes.main}>
           {/* Main featured post */}
           <Paper className={classes.mainFeaturedPost}>
             <Grid container>
