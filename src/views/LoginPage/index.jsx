@@ -15,6 +15,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { styles } from "./styles";
 import {compose} from "redux";
 import {connect} from "react-redux";
+import { Redirect } from "react-router-dom";
 import {firebaseConnect, isEmpty, isLoaded} from "react-redux-firebase";
 
 function SignIn(props) {
@@ -27,8 +28,6 @@ function SignIn(props) {
       password: event.target.password.value
     });
   };
-
-  console.log(props);
 
   if (!isLoaded(props.auth)) {
     return null
@@ -72,16 +71,7 @@ function SignIn(props) {
     );
   } else {
     return (
-      <button style={{ width: "20rem" }}
-              onClick={
-                async () => {
-                  await props.firebase.logout();
-                  props.clearFirestore();
-                }
-              }
-      >
-        Logout
-      </button >
+      <Redirect exact to={'/'}/>
     )
   }
 }
