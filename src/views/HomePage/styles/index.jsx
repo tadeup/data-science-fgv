@@ -3,10 +3,18 @@ export const styles = theme => ({
     marginTop: 12 + 'vh',
   },
   postWraper: {
-    paddingBottom: 10,
+    marginTop: 12,
+    maxHeight: 190,
   },
   postsList: {
     paddingInlineStart: 0,
+  },
+  paragraphWraper: {
+    overflowWrap: 'normal',
+  },
+  paper: {
+    margin: `${theme.spacing.unit}px auto`,
+    padding: theme.spacing.unit * 2,
   },
   layout: {
     width: 'auto',
@@ -48,7 +56,7 @@ export const styles = theme => ({
     flex: 1,
   },
   cardMedia: {
-    width: 160,
+    minHeight: 190,
   },
   markdown: {
     padding: `${theme.spacing.unit * 3}px 0`,

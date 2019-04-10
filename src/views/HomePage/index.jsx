@@ -14,6 +14,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Avatar from '@material-ui/core/Avatar';
 import Markdown from './Markdown';
 import PostList from './PostsList';
 import {styles} from './styles'
@@ -50,7 +51,6 @@ const archives = [
 ];
 
 const social = ['GitHub', 'Twitter', 'Facebook'];
-
 function Blog(props) {
   const { classes } = props;
 

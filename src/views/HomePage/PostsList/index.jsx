@@ -6,6 +6,9 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { withStyles } from "@material-ui/core/styles";
 import PostElement from "./PostElement";
 import { styles } from "../styles";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 
 class PostsList extends Component {
   renderPost(post, key) {
@@ -16,11 +19,9 @@ class PostsList extends Component {
   render() {
     const posts = this.props.posts.map((post, key) => this.renderPost(post, key));
     return (
-      <div>
-        <ul className={this.props.classes.postsList}>
-          {posts}
-        </ul>
-      </div>
+      <React.Fragment>
+        {posts}
+      </React.Fragment>
     );
   }
 }
