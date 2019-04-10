@@ -52,7 +52,7 @@ class NavBar extends Component {
     return (
       <React.Fragment>
         <AppBar color={'default'}>
-          <Toolbar className={classes.toolbarMain}>
+          {/*<Toolbar className={classes.toolbarMain}>*/}
             <Grid
               container
               direction="row"
@@ -60,14 +60,14 @@ class NavBar extends Component {
               alignItems="center"
             >
               <img src={logo} alt={"FGV"}/>
-              <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
+              <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange} className={classes.tabs}>
                 <Tab label="Blog" />
                 <Tab label="Sobre" />
                 <Tab label="Eventos" />
               </Tabs>
               {this.renderIntraButton()}
             </Grid>
-          </Toolbar>
+          {/*</Toolbar>*/}
         </AppBar>
       </React.Fragment>
     );
@@ -96,6 +96,7 @@ const mapDispatchToProps = dispatch => {
 
 
 export default compose(
+  withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps),
   firebaseConnect()
-)(withStyles(styles)(NavBar));
+)(NavBar);

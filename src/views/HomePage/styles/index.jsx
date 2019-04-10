@@ -2,8 +2,14 @@ export const styles = theme => ({
   main: {
     marginTop: 12 + 'vh',
   },
+  tabs: {
+
+  },
   postWraper: {
     marginTop: 12,
+    maxHeight: 190,
+  },
+  cardActionArea: {
     maxHeight: 190,
   },
   postsList: {
@@ -20,8 +26,8 @@ export const styles = theme => ({
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
+    [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
+      width: 1300,
       marginLeft: 'auto',
       marginRight: 'auto',
     },

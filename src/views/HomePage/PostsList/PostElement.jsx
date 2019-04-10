@@ -17,7 +17,7 @@ const PostElement = ({post, classes}) => {
   return (
     <React.Fragment>
       <Card className={classes.postWraper}>
-        <CardActionArea>
+        <CardActionArea className={classes.cardActionArea}>
           <Grid container>
             <Grid item xs={8} >
               <CardContent>
