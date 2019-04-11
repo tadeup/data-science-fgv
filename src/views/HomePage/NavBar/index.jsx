@@ -22,6 +22,7 @@ import logo from '../../../assets/logo.svg'
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {firebaseConnect, isEmpty} from "react-redux-firebase";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 class NavBar extends Component {
   state = {
@@ -62,6 +63,7 @@ class NavBar extends Component {
 
     const NewPostLink = props => <Link to="/intra/newpost" {...props} />;
     const ProfileLink = props => <Link to="#" {...props} />;
+    const HomeLink = props => <Link to={"/"} {...props}/>;
     const sideList = (
       <div className={classes.list}>
 
@@ -111,7 +113,10 @@ class NavBar extends Component {
               justify="space-between"
               alignItems="center"
             >
-              <img src={logo} alt={"FGV"}/>
+
+              <ButtonBase component={HomeLink} className={classes.imageButton}>
+                <img src={logo} alt={"FGV"} />
+              </ButtonBase>
               <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
                 <Tab label="Blog" className={classes.tabs}/>
                 <Tab label="Sobre" className={classes.tabs}/>

@@ -5,6 +5,10 @@ export const styles = theme => ({
   tabs: {
     height: 62
   },
+  imageButton: {
+    minWidth: 305,
+    minHeight: 35
+  },
   navbarGrid: {
     paddingRight: theme.spacing.unit * 5,
     paddingLeft: theme.spacing.unit * 5,
