@@ -6,6 +6,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom'
 import { withStyles} from "@material-ui/core";
 import {styles} from "../styles";
@@ -17,6 +26,13 @@ import {firebaseConnect, isEmpty} from "react-redux-firebase";
 class NavBar extends Component {
   state = {
     value: 0,
+    isDrawerOpen: false,
+  };
+
+  toggleDrawer = (open) => () => {
+    this.setState({
+      isDrawerOpen: open,
+    });
   };
 
   handleChange = (event, value) => {
@@ -33,15 +49,9 @@ class NavBar extends Component {
       )
     } else {
       return (
-        <Button color="inherit"
-                onClick={
-                  async () => {
-                    await this.props.firebase.logout();
-                    this.props.clearFirestore();
-                  }
-                }>
-          Logout
-        </Button>
+        <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Open drawer" onClick={this.toggleDrawer(true)}>
+          <MenuIcon />
+        </IconButton>
       )
     }
   };
@@ -49,26 +59,78 @@ class NavBar extends Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
+
+    const NewPostLink = props => <Link to="/intra/newpost" {...props} />;
+    const ProfileLink = props => <Link to="#" {...props} />;
+    const sideList = (
+      <div className={classes.list}>
+
+        <ListItem button
+                  component={NewPostLink}
+                  key={"newpost"}
+        >
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={'Novo Artigo'} />
+        </ListItem>
+
+        <ListItem button
+                  component={ProfileLink}
+                  key={"config"}
+        >
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={'Configurações'} />
+        </ListItem>
+
+        <Divider />
+
+        <List>
+          <ListItem button
+                    key={"logout"}
+                    onClick={
+                      async () => {
+                        await this.props.firebase.logout();
+                        // this.props.clearFirestore();
+                      }
+                    }>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary={'Logout'} />
+          </ListItem>
+        </List>
+
+      </div>
+    );
+
     return (
       <React.Fragment>
         <AppBar color={'default'}>
           {/*<Toolbar className={classes.toolbarMain}>*/}
             <Grid
+              className={classes.navbarGrid}
               container
               direction="row"
               justify="space-between"
               alignItems="center"
             >
               <img src={logo} alt={"FGV"}/>
-              <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange} className={classes.tabs}>
-                <Tab label="Blog" />
-                <Tab label="Sobre" />
-                <Tab label="Eventos" />
+              <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
+                <Tab label="Blog" className={classes.tabs}/>
+                <Tab label="Sobre" className={classes.tabs}/>
+                <Tab label="Eventos" className={classes.tabs}/>
               </Tabs>
               {this.renderIntraButton()}
             </Grid>
           {/*</Toolbar>*/}
         </AppBar>
+        <Drawer anchor="right" open={this.state.isDrawerOpen} onClose={this.toggleDrawer(false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}
+          >
+            {sideList}
+          </div>
+        </Drawer>
       </React.Fragment>
     );
   }

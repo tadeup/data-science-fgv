@@ -3,7 +3,11 @@ export const styles = theme => ({
     marginTop: 12 + 'vh',
   },
   tabs: {
-
+    height: 62
+  },
+  navbarGrid: {
+    paddingRight: theme.spacing.unit * 5,
+    paddingLeft: theme.spacing.unit * 5,
   },
   postWraper: {
     marginTop: 12,
@@ -27,7 +31,7 @@ export const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
-      width: 1300,
+      width: 1200,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -79,4 +83,7 @@ export const styles = theme => ({
     marginTop: theme.spacing.unit * 8,
     padding: `${theme.spacing.unit * 6}px 0`,
   },
+  list: {
+    width: 250,
+  }
 });
