@@ -8,13 +8,13 @@ import NavBar from "../HomePage/NavBar";
 import Typography from "@material-ui/core/Typography";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {firebaseConnect, firestoreConnect} from "react-redux-firebase";
+import {firebaseConnect, firestoreConnect, isLoaded, isEmpty} from "react-redux-firebase";
+import moment from 'moment'
 
 function Post(props) {
-  const { classes, match } = props;
-
-  console.log(props);
-  console.log(props.match.params.postid);
+  const { classes, match, post } = props;
+  if (isEmpty(post)) return null;
+  const postDate = moment(post.postDate.toDate()).locale('pt-BR').format('DD MM YYYY');
   return (
     <React.Fragment>
       <CssBaseline/>
@@ -25,9 +25,17 @@ function Post(props) {
             <Grid item xs={8}>
               <Paper className={classes.paper}>
                 <Typography component={'h1'} variant={"h4"}>
-                  POSTS PAGE {match.params.postid}
+                  {post.postTitle}
                 </Typography>
-
+                <Typography component={'h1'} variant={"body1"}>
+                  {post.authorId}
+                </Typography>
+                <Typography component={'h1'} variant={"body1"}>
+                  {postDate}
+                </Typography>
+                <Typography component={'h1'} variant={"body1"}>
+                  {post.postBody}
+                </Typography>
               </Paper>
             </Grid>
             <Grid item xs={4}>
@@ -48,8 +56,8 @@ Post.propTypes = {};
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    posts: state.firestore.ordered.posts
-      ? state.firestore.ordered.posts
+    post: state.firestore.ordered.posts
+      ? state.firestore.ordered.posts[0]
       : []
   }
 };

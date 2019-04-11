@@ -11,13 +11,17 @@ import Grid from "@material-ui/core/Grid";
 import { styles } from "../styles";
 import moment from 'moment'
 import 'moment/locale/pt-br';
+import {Link} from "react-router-dom";
 
 const PostElement = ({post, classes}) => {
   const postDate = moment(post.postDate.toDate()).locale('pt-BR').format('DD MM YYYY');
+  const RouterLink = props => {
+    return <Link {...props} />;
+  };
   return (
     <React.Fragment>
       <Card className={classes.postWraper}>
-        <CardActionArea className={classes.cardActionArea}>
+        <CardActionArea className={classes.cardActionArea} to={`/posts/${post.id}`} component={RouterLink}>
           <Grid container>
             <Grid item xs={8} >
               <CardContent>
