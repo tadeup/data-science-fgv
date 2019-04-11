@@ -7,16 +7,20 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { store } from "./redux/configureStore";
 import { rrfProps } from "./firebase";
 import indexRoutes from "./router";
+import NavBar from "./components/Navbar/Navbar";
 
 const App = () => (
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <BrowserRouter>
-        <Switch>
-          {
-            indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;})
-          }
-        </Switch>
+        <>
+          <NavBar />
+          <Switch>
+            {
+              indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;})
+            }
+          </Switch>
+        </>
       </BrowserRouter>
     </ReactReduxFirebaseProvider>
   </Provider>

@@ -2,17 +2,6 @@ export const styles = theme => ({
   main: {
     marginTop: 12 + 'vh',
   },
-  tabs: {
-    height: 62
-  },
-  imageButton: {
-    minWidth: 305,
-    minHeight: 35
-  },
-  navbarGrid: {
-    paddingRight: theme.spacing.unit * 5,
-    paddingLeft: theme.spacing.unit * 5,
-  },
   postWraper: {
     marginTop: 12,
     maxHeight: 190,
@@ -87,7 +76,4 @@ export const styles = theme => ({
     marginTop: theme.spacing.unit * 8,
     padding: `${theme.spacing.unit * 6}px 0`,
   },
-  list: {
-    width: 250,
-  }
 });

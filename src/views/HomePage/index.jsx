@@ -18,7 +18,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Markdown from './Markdown';
 import PostList from './PostsList';
 import {styles} from './styles'
-import NavBar from "./NavBar";
 
 const featuredPosts = [
   {
@@ -58,7 +57,6 @@ function Blog(props) {
     <React.Fragment>
       <CssBaseline />
       <div className={classes.layout}>
-        <NavBar/>
         <main className={classes.main}>
           {/* Main featured post */}
           <Paper className={classes.mainFeaturedPost}>
