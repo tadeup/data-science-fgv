@@ -1,6 +1,6 @@
 export const styles = theme => ({
   main: {
-    marginTop: 12 + 'vh',
+
   },
   postWraper: {
     marginTop: 12,

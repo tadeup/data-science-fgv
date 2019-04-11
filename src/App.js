@@ -15,11 +15,11 @@ const App = () => (
       <BrowserRouter>
         <>
           <NavBar />
-          <Switch>
-            {
-              indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;})
-            }
-          </Switch>
+          <main style={{marginTop: 12 + 'vh',}}>
+            <Switch>
+              { indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;}) }
+            </Switch>
+          </main>
         </>
       </BrowserRouter>
     </ReactReduxFirebaseProvider>

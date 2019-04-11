@@ -4,22 +4,23 @@ import {CssBaseline, withStyles} from "@material-ui/core";
 import {styles} from "../HomePage/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
-import NavBar from "../HomePage/NavBar";
 import Typography from "@material-ui/core/Typography";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {firebaseConnect, firestoreConnect, isLoaded, isEmpty} from "react-redux-firebase";
 import moment from 'moment'
+import NoPost from "./NoPost";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Post(props) {
   const { classes, match, post } = props;
-  if (isEmpty(post)) return null;
+  if (!isLoaded(post)) return <CircularProgress />;
+  if (isEmpty(post)) return <NoPost />;
   const postDate = moment(post.postDate.toDate()).locale('pt-BR').format('DD MM YYYY');
   return (
     <React.Fragment>
       <CssBaseline/>
       <div className={classes.layout}>
-        <NavBar/>
         <main className={classes.main}>
           <Grid container spacing={16}>
             <Grid item xs={8}>
