@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import Uploader from "../../components/Uploader/Uploader";
 
 class NewPost extends Component {
   state = {postTitle: '', postBody: ''};
@@ -32,6 +33,7 @@ class NewPost extends Component {
           onChange={(evt) => this.setState({ postBody: evt.target.value })}
         />
         <button onClick={(evt) => this.addPost()}>Post</button>
+        <Uploader/>
       </div>
     );
   }

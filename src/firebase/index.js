@@ -1,11 +1,15 @@
+// FOR MORE INFO ON CONFIG VISIT: https://firebase.google.com/docs/web/setup
+
 import { createFirestoreInstance } from 'redux-firestore'
 // Adding firebase components
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 // Local imports
 import {store} from "../redux/configureStore";
 
+// Declaring the config obj
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -15,10 +19,12 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID
 };
 
+// Initialize app with config and settings for individual components
 firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({});
+firebase.firestore().settings({});        //OPTIONAL
+firebase.storage();                       //OPTIONAL
 
-// config the firebase enhancer for the redux store
+// Config the firebase enhancer for the redux store
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true,
