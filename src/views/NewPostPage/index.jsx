@@ -4,37 +4,83 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import Uploader from "../../components/Uploader/Uploader";
+import { styles } from "./styles";
+import Paper from "@material-ui/core/Paper";
+import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
+import { withStyles } from "@material-ui/core";
+import TextField from "@material-ui/core/es/TextField/TextField";
+import Button from "@material-ui/core/es/Button/Button";
 
 class NewPost extends Component {
-  state = {postTitle: '', postBody: ''};
-  addPost() {
+  state = { postTitle: '', postBody: '',  postAuthor: 'Roshman' };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
+
+  handleSubmit = () => event => {
     this.props.firestore.add(
       { collection: 'posts' },
       {
-        authorId: 'test',
+        postAuthor: this.state.postAuthor,
         postTitle: this.state.postTitle,
         postBody: this.state.postBody,
-        postDate: this.props.firestore.Timestamp.fromDate(new Date())
+        postImgUrl: 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/uploadedFiles%2Funnamed.jpg?alt=media&token=226114d9-cb5b-4ad2-a4e0-52ccd8582490',
+        postDate: this.props.firestore.Timestamp.fromDate(new Date()),
+        postOpId: this.props.uid
       }
     );
-    this.setState({ postTitle: '', postBody: '' })
-  }
+    console.log(this.state);
+    this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshmaninho' });
+    console.log(this.state);
+  };
+
   render() {
+    const {classes} = this.props;
     return (
-      <div>
-        <input
-          type="text"
-          value={this.state.postTitle}
-          onChange={(evt) => this.setState({ postTitle: evt.target.value })}
-        />
-        <input
-          type="text"
-          value={this.state.postBody}
-          onChange={(evt) => this.setState({ postBody: evt.target.value })}
-        />
-        <button onClick={(evt) => this.addPost()}>Post</button>
-        <Uploader/>
-      </div>
+      <main>
+        <CssBaseline/>
+        <Paper className={classes.layout}>
+          <TextField id="post-title"
+                     label="Título"
+                     placeholder="Título"
+                     multiline
+                     fullWidth
+                     className={classes.postTitle}
+                     margin="normal"
+                     value={this.state.postTitle}
+                     onChange={this.handleChange('postTitle')}
+          />
+          <TextField id="post-body"
+                     label="Corpo da postagem"
+                     placeholder="Corpo da postagem"
+                     multiline
+                     fullWidth
+                     className={classes.postBody}
+                     margin="normal"
+                     value={this.state.postBody}
+                     onChange={this.handleChange('postBody')}
+                     variant="outlined"
+                     rows={10}
+          />
+          <TextField id="post-author"
+                     label="Autor(a)"
+                     placeholder="Autor(a)"
+                     className={classes.postAuthor}
+                     margin="normal"
+                     value={this.state.postAuthor}
+                     onChange={this.handleChange('postAuthor')}
+          />
+          <Button variant="contained"
+                  color="primary"
+                  onClick={this.handleSubmit()}>
+            Post
+          </Button>
+          <Uploader/>
+        </Paper>
+      </main>
     );
   }
 }
@@ -48,13 +94,14 @@ NewPost.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    uid: state.firebase.auth.uid,
+    uid: state.firebase.auth.uid
   }
 };
 
 const mapDispatchToProps = {};
 
 export default compose(
+  withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(),
 )(NewPost)

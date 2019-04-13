@@ -1,6 +1,11 @@
 import React, {useMemo} from 'react';
 import {useDropzone} from 'react-dropzone';
 
+import {firebaseConnect, firestoreConnect} from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import {compose} from "redux";
+
 const baseStyle = {
   flex: 1,
   display: 'flex',
@@ -29,14 +34,38 @@ const rejectStyle = {
   borderColor: '#ff1744'
 };
 
-function StyledDropzone(props) {
+// Path within Database for metadata (also used for file Storage path)
+const filesPath = 'uploadedFiles';
+
+function Uploader(props) {
   const {
+    acceptedFiles,
     getRootProps,
     getInputProps,
     isDragActive,
     isDragAccept,
     isDragReject
-  } = useDropzone({accept: 'image/*'});
+  } = useDropzone({
+    accept: 'image/*',
+    onDrop: files => {
+      console.log(files);
+      console.log(props);
+      console.log(props.firebase.storage().ref(filesPath));
+      props.firebase.uploadFiles(filesPath, files)
+        .then((data) => {
+          console.log(data)
+        })
+        .catch((e) => {
+          console.log(e)
+        });
+    }
+  });
+
+  const files = acceptedFiles.map(file => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
 
   const style = useMemo(() => ({
     ...baseStyle,
@@ -52,11 +81,30 @@ function StyledDropzone(props) {
     <div className="container">
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>Arraste aqui uma imagem ou clique para selecionar do disco</p>
       </div>
+      <aside>
+        <h4>Files</h4>
+        <ul>{files}</ul>
+      </aside>
     </div>
   );
 }
 
+Uploader.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  uploadedFiles: PropTypes.object
+};
 
-export default StyledDropzone;
+const mapStateToProps = state => {
+  return {
+    uploadedFiles: state
+  }
+};
+
+const mapDispatchToProps = {};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firebaseConnect(),
+)(Uploader);
