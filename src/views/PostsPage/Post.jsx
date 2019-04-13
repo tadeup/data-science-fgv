@@ -11,6 +11,8 @@ import {firebaseConnect, firestoreConnect, isLoaded, isEmpty} from "react-redux-
 import moment from 'moment'
 import NoPost from "./NoPost";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import CardMedia from "@material-ui/core/es/CardMedia/CardMedia";
+import Card from "@material-ui/core/es/Card/Card";
 
 function Post(props) {
   const { classes, match, post } = props;
@@ -24,12 +26,17 @@ function Post(props) {
         <main className={classes.main}>
           <Grid container spacing={16}>
             <Grid item xs={8}>
-              <Paper className={classes.paper}>
+              <Card className={classes.paper}>
+                <CardMedia
+                  className={classes.media}
+                  image={post.postImgUrl}
+                  title="post image"
+                />
                 <Typography component={'h1'} variant={"h4"}>
                   {post.postTitle}
                 </Typography>
                 <Typography component={'h1'} variant={"body1"}>
-                  {post.authorId}
+                  {post.postAuthor}
                 </Typography>
                 <Typography component={'h1'} variant={"body1"}>
                   {postDate}
@@ -37,7 +44,7 @@ function Post(props) {
                 <Typography component={'h1'} variant={"body1"}>
                   {post.postBody}
                 </Typography>
-              </Paper>
+              </Card>
             </Grid>
             <Grid item xs={4}>
               <Paper >

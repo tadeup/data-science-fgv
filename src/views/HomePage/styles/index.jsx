@@ -76,4 +76,8 @@ export const styles = theme => ({
     marginTop: theme.spacing.unit * 8,
     padding: `${theme.spacing.unit * 6}px 0`,
   },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  }
 });

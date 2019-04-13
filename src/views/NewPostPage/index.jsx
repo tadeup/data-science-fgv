@@ -32,9 +32,7 @@ class NewPost extends Component {
         postOpId: this.props.uid
       }
     );
-    console.log(this.state);
-    this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshmaninho' });
-    console.log(this.state);
+    this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshman' });
   };
 
   render() {
