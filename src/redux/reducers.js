@@ -1,18 +1,14 @@
 import { combineReducers } from 'redux';
 import { firebaseReducer } from 'react-redux-firebase'
 import { firestoreReducer } from 'redux-firestore'
-import dashboardReducer from '../views/DashboardPage/redux/reducers';
-import formReducer from '../views/FormPage/redux/reducers';
-import {initialState as categoriesInitial, reducer as categoriesReducer} from "../componentsExternal/examples/CategoryList/redux/reducer";
+import {initialState as newPostInitial, reducer as newPostReducer} from "../views/NewPostPage/redux/reducers";
 
 export const rootReducer = combineReducers({
-    dashboardReducer,
-    formReducer,
-    firebase: firebaseReducer,
-    firestore: firestoreReducer,
-    categories: categoriesReducer,
+  firebase: firebaseReducer,
+  firestore: firestoreReducer,
+  newPost: newPostReducer,
 });
 
 export const initialState = {
-    categories: categoriesInitial
+  newPost: newPostInitial
 };

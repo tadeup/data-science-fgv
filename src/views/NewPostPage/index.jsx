@@ -11,8 +11,10 @@ import { withStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/es/TextField/TextField";
 import Button from "@material-ui/core/es/Button/Button";
 
+const standardUrl = 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/uploadedFiles%2Funnamed.jpg?alt=media&token=226114d9-cb5b-4ad2-a4e0-52ccd8582490'
+
 class NewPost extends Component {
-  state = { postTitle: '', postBody: '',  postAuthor: 'Roshman' };
+  state = { postTitle: '', postBody: '',  postAuthor: 'Roshman', postImgUrl: standardUrl };
 
   handleChange = name => event => {
     this.setState({
@@ -27,13 +29,26 @@ class NewPost extends Component {
         postAuthor: this.state.postAuthor,
         postTitle: this.state.postTitle,
         postBody: this.state.postBody,
-        postImgUrl: 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/uploadedFiles%2Funnamed.jpg?alt=media&token=226114d9-cb5b-4ad2-a4e0-52ccd8582490',
+        postImgUrl: this.state.postImgUrl,
         postDate: this.props.firestore.Timestamp.fromDate(new Date()),
         postOpId: this.props.uid
       }
     );
     this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshman' });
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps !== this.props) {
+      if (this.props.newPost.stagedImage) {
+        this.props.firebase.storage().ref(this.props.newPost.stagedImage).getDownloadURL()
+          .then(url => {
+            this.setState({postImgUrl: url});
+          })
+      } else {
+        this.setState({postImgUrl: standardUrl});
+      }
+    }
+  }
 
   render() {
     const {classes} = this.props;
@@ -92,7 +107,8 @@ NewPost.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    uid: state.firebase.auth.uid
+    uid: state.firebase.auth.uid,
+    newPost: state.newPost
   }
 };
 

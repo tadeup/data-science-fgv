@@ -5,6 +5,7 @@ import {firebaseConnect, firestoreConnect} from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import {compose} from "redux";
+import {uploadImage} from "../../views/NewPostPage/redux/actions";
 
 const baseStyle = {
   flex: 1,
@@ -48,12 +49,9 @@ function Uploader(props) {
   } = useDropzone({
     accept: 'image/*',
     onDrop: files => {
-      console.log(files);
-      console.log(props);
-      console.log(props.firebase.storage().ref(filesPath));
       props.firebase.uploadFiles(filesPath, files)
         .then((data) => {
-          console.log(data)
+          props.uploadImage(data[0].uploadTaskSnapshot.ref.fullPath)
         })
         .catch((e) => {
           console.log(e)
@@ -102,7 +100,9 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => ({
+  uploadImage: image => dispatch(uploadImage(image))
+});
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
