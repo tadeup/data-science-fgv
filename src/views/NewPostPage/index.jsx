@@ -10,6 +10,7 @@ import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
 import { withStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/es/TextField/TextField";
 import Button from "@material-ui/core/es/Button/Button";
+import ImagePreview from "../../components/Uploader/ImagePreview";
 
 const standardUrl = 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/uploadedFiles%2Funnamed.jpg?alt=media&token=226114d9-cb5b-4ad2-a4e0-52ccd8582490'
 
@@ -39,11 +40,9 @@ class NewPost extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps !== this.props) {
-      if (this.props.newPost.stagedImage) {
-        this.props.firebase.storage().ref(this.props.newPost.stagedImage).getDownloadURL()
-          .then(url => {
-            this.setState({postImgUrl: url});
-          })
+      const {stagedImages} = this.props.newPost;
+      if (stagedImages) {
+        this.setState({postImgUrl: stagedImages});
       } else {
         this.setState({postImgUrl: standardUrl});
       }
@@ -92,6 +91,7 @@ class NewPost extends Component {
             Post
           </Button>
           <Uploader/>
+          <ImagePreview/>
         </Paper>
       </main>
     );

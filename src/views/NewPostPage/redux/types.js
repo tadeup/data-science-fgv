@@ -1,2 +1,3 @@
-export const UPLOAD_IMAGE = "UPLOAD_IMAGE";
-export const DELETE_IMAGE = "DELETE_IMAGE";
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
+export const DELETE_IMAGE = 'DELETE_IMAGE';
+export const CHANGE_HEADER = 'CHANGE_HEADER';

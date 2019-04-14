@@ -51,7 +51,12 @@ function Uploader(props) {
     onDrop: files => {
       props.firebase.uploadFiles(filesPath, files)
         .then((data) => {
-          props.uploadImage(data[0].uploadTaskSnapshot.ref.fullPath)
+          return props.firebase.storage().ref(data[0].uploadTaskSnapshot.ref.fullPath).getDownloadURL()
+        })
+        .then(url => {
+          const {isHeader} = !!props.newPost.stagedImages.length;
+
+          props.uploadImage({url, isHeader});
         })
         .catch((e) => {
           console.log(e)
@@ -91,12 +96,12 @@ function Uploader(props) {
 
 Uploader.propTypes = {
   firebase: PropTypes.object.isRequired,
-  uploadedFiles: PropTypes.object
+  newPost: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    uploadedFiles: state
+    newPost: state.newPost
   }
 };
 
