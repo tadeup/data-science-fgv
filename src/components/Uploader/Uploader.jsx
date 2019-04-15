@@ -55,19 +55,13 @@ function Uploader(props) {
         })
         .then(url => {
           const isHeader = !props.newPost.stagedImages.length;
-          props.uploadImage({url, isHeader});
+          props.uploadImage({url, isHeader, name: files[0].name});
         })
         .catch((e) => {
           console.log(e)
         });
     }
   });
-
-  const files = acceptedFiles.map(file => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
 
   const style = useMemo(() => ({
     ...baseStyle,
@@ -85,10 +79,6 @@ function Uploader(props) {
         <input {...getInputProps()} />
         <p>Arraste aqui uma imagem ou clique para selecionar do disco</p>
       </div>
-      <aside>
-        <h4>Files</h4>
-        <ul>{files}</ul>
-      </aside>
     </div>
   );
 }

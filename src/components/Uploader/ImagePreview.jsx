@@ -42,6 +42,8 @@ const styles = theme => ({
   }
 });
 
+const filesPath = 'uploadedFiles';
+
 function ImagePreview(props) {
   const {stagedImages} = props.newPost;
   const {classes} = props;
@@ -51,8 +53,14 @@ function ImagePreview(props) {
     props.changeHeader(currIndex, index)
   };
 
-  const handleDelete = (index) => {
-    
+  const handleDelete = (el) => {
+    props.firebase.deleteFile(`${filesPath}/${el.name}`)
+      .then(() => {
+        props.deleteImage(el)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   };
 
   if (stagedImages.length) {
@@ -66,10 +74,10 @@ function ImagePreview(props) {
                   <CardMedia
                     className={classes.media}
                     image={el.url}
-                    title={el.url}/>
+                    title={el.name}/>
                 </CardActionArea>
                 <Divider/>
-                <IconButton aria-label="Delete" className={classes.deleteButton} onClick={() => handleDelete(index)}>
+                <IconButton aria-label="Delete" className={classes.deleteButton} onClick={() => handleDelete(el)}>
                   <DeleteIcon fontSize="small"/>
                 </IconButton>
               </Card>
