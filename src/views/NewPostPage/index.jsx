@@ -15,7 +15,7 @@ import ImagePreview from "../../components/Uploader/ImagePreview";
 const standardUrl = 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/uploadedFiles%2Funnamed.jpg?alt=media&token=226114d9-cb5b-4ad2-a4e0-52ccd8582490'
 
 class NewPost extends Component {
-  state = { postTitle: '', postBody: '',  postAuthor: 'Roshman', postImgUrl: standardUrl };
+  state = { postTitle: '', postBody: '',  postAuthor: 'Roshman' };
 
   handleChange = name => event => {
     this.setState({
@@ -24,30 +24,22 @@ class NewPost extends Component {
   };
 
   handleSubmit = () => event => {
+    const postImgUrl = this.props.newPost.stagedImages.length
+      ? this.props.newPost.stagedImages.find(el => el.isHeader).url
+      : standardUrl;
     this.props.firestore.add(
       { collection: 'posts' },
       {
         postAuthor: this.state.postAuthor,
         postTitle: this.state.postTitle,
         postBody: this.state.postBody,
-        postImgUrl: this.state.postImgUrl,
+        postImgUrl: postImgUrl,
         postDate: this.props.firestore.Timestamp.fromDate(new Date()),
         postOpId: this.props.uid
       }
     );
     this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshman' });
   };
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps !== this.props) {
-      const {stagedImages} = this.props.newPost;
-      if (stagedImages) {
-        this.setState({postImgUrl: stagedImages});
-      } else {
-        this.setState({postImgUrl: standardUrl});
-      }
-    }
-  }
 
   render() {
     const {classes} = this.props;

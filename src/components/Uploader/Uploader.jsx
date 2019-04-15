@@ -54,8 +54,7 @@ function Uploader(props) {
           return props.firebase.storage().ref(data[0].uploadTaskSnapshot.ref.fullPath).getDownloadURL()
         })
         .then(url => {
-          const {isHeader} = !!props.newPost.stagedImages.length;
-
+          const isHeader = !props.newPost.stagedImages.length;
           props.uploadImage({url, isHeader});
         })
         .catch((e) => {
