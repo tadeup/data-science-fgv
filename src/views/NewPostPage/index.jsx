@@ -12,7 +12,7 @@ import TextField from "@material-ui/core/es/TextField/TextField";
 import Button from "@material-ui/core/es/Button/Button";
 import ImagePreview from "../../components/Uploader/ImagePreview";
 
-const standardUrl = 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/uploadedFiles%2Funnamed.jpg?alt=media&token=226114d9-cb5b-4ad2-a4e0-52ccd8582490'
+const standardUrl = 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/defaultFiles%2Funnamed.jpg?alt=media&token=6a44a8d1-15a1-45d7-af46-87ec7ca503c2';
 
 class NewPost extends Component {
   state = { postTitle: '', postBody: '',  postAuthor: 'Roshman' };
