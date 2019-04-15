@@ -51,6 +51,10 @@ function ImagePreview(props) {
     props.changeHeader(currIndex, index)
   };
 
+  const handleDelete = (index) => {
+    
+  };
+
   if (stagedImages.length) {
     return (
       <Paper className="container">
@@ -65,7 +69,7 @@ function ImagePreview(props) {
                     title={el.url}/>
                 </CardActionArea>
                 <Divider/>
-                <IconButton aria-label="Delete" className={classes.deleteButton}>
+                <IconButton aria-label="Delete" className={classes.deleteButton} onClick={() => handleDelete(index)}>
                   <DeleteIcon fontSize="small"/>
                 </IconButton>
               </Card>
