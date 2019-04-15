@@ -24,16 +24,21 @@ class NewPost extends Component {
   };
 
   handleSubmit = () => event => {
+    const postShorty = this.state.postBody.length > 140
+      ? `${this.state.postBody.substring(0, 140)}...`
+      : this.state.postBody;
     const postImgUrl = this.props.newPost.stagedImages.length
       ? this.props.newPost.stagedImages.find(el => el.isHeader).url
       : standardUrl;
+
     this.props.firestore.add(
       { collection: 'posts' },
       {
         postAuthor: this.state.postAuthor,
         postTitle: this.state.postTitle,
+        postShorty,
         postBody: this.state.postBody,
-        postImgUrl: postImgUrl,
+        postImgUrl,
         postDate: this.props.firestore.Timestamp.fromDate(new Date()),
         postOpId: this.props.uid
       }

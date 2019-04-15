@@ -28,7 +28,6 @@ class PostsList extends Component {
 
 PostsList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
-    authorId: PropTypes.string.isRequired,
     postBody: PropTypes.string.isRequired,
     postTitle: PropTypes.string.isRequired,
     postDate: PropTypes.isRequired,
