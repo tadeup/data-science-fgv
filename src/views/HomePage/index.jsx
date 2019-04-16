@@ -28,35 +28,22 @@ function Blog(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Parallax small filter image={logo}/>
+      <Parallax small filter image={logo}>
+        <div className={classes.mainContainer}>
+          <Grid container>
+            <Grid item md={9}>
+              <Typography component="h1" variant="h2" color="inherit" gutterBottom className={classes.mainHeader}>
+                  NÚCLEO DE ESTUDOS EM DATA SCIENCE
+              </Typography>
+            </Grid>
+            <Grid item md={3}>
+              {/*<CardMedia className={classes.media} image={logo} alt="a"/>*/}
+            </Grid>
+          </Grid>
+        </div>
+      </Parallax>
       <div className={classes.layout}>
         <main className={classes.main}>
-          {/* Main featured post */}
-
-          {/*<Card className={classes.mainFeaturedPost}>*/}
-          {/*  <Grid container>*/}
-          {/*    <Grid item md={6}>*/}
-          {/*      <div className={classes.mainFeaturedPostContent}>*/}
-          {/*        <Typography component="h1" variant="h3" color="inherit" gutterBottom>*/}
-          {/*          NÚCLEO DE ESTUDOS EM DATA SCIENCE*/}
-          {/*        </Typography>*/}
-          {/*        <Typography variant="h5" color="inherit" paragraph>*/}
-          {/*          Multiple lines of text that form the lede, informing new readers quickly and*/}
-          {/*          efficiently about what&apos;s most interesting in this post&apos;s contents…*/}
-          {/*        </Typography>*/}
-          {/*      </div>*/}
-          {/*    </Grid>*/}
-          {/*    <Grid item md={6}>*/}
-          {/*      /!*<CardMedia className={classes.media} image={logo} alt="a"/>*!/*/}
-          {/*    </Grid>*/}
-          {/*  </Grid>*/}
-          {/*</Card>*/}
-
-          {/* End main featured post */}
-          {/* Sub featured posts */}
-
-          {/* End sub featured posts */}
-
 
             <PostList/>
 

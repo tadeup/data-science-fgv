@@ -66,8 +66,8 @@ class PostsList extends Component {
         <Grid container spacing={40} className={classes.mainGrid}>
 
           <Grid item xs={12} md={8}>
-            <Typography variant="h6" gutterBottom>
-              From the Firehose
+            <Typography variant="h6" gutterBottom style={{letterSpacing: 0.1 + 'em'}}>
+              POSTS
             </Typography>
             <Divider />
             {posts}

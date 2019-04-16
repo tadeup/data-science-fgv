@@ -1,4 +1,5 @@
 import logo from '../../../assets/datascience_logo.jpg'
+import { container, title } from "assets/jss/material-kit-react.jsx";
 
 export const styles = theme => ({
   main: {
@@ -96,5 +97,15 @@ export const styles = theme => ({
   },
   lifted: {
     margin: '-60px 0px 0px'
-  }
+  },
+  mainContainer: {
+    zIndex: "12",
+    color: "#FFFFFF",
+    ...container
+  },
+  mainHeader: {
+    // ...title,
+    fontWeight: 500,
+    margin: '-60px 0px 0px'
+  },
 });
