@@ -7,6 +7,7 @@ import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
 import { withStyles } from "@material-ui/core";
 import { styles } from "./styles";
 
+// STATEFUL
 class _TEMPLATE extends Component {
   state = {  };
 
@@ -18,6 +19,15 @@ class _TEMPLATE extends Component {
     );
   }
 }
+
+// STATELESS
+const _TEMPLATE = (props) => {
+  return (
+    <>
+      <CssBaseline/>
+    </>
+  );
+};
 
 _TEMPLATE.propTypes = {
 

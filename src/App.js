@@ -15,7 +15,7 @@ const App = () => (
       <BrowserRouter>
         <>
           <NavBar />
-          <main style={{marginTop: 12 + 'vh',}}>
+          <main style={{marginTop: 62}}>
             <Switch>
               { indexRoutes.map((prop, key) => {return <Route path={prop.path} key={key} component={prop.component}/>;}) }
             </Switch>

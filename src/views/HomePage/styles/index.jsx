@@ -2,7 +2,14 @@ import logo from '../../../assets/datascience_logo.jpg'
 
 export const styles = theme => ({
   main: {
-
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
+      width: 1200,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   postWraper: {
     marginTop: 12,
@@ -22,14 +29,9 @@ export const styles = theme => ({
     padding: theme.spacing.unit * 2,
   },
   layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1300 + theme.spacing.unit * 3 * 2)]: {
-      width: 1200,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+    position: "relative",
+    zIndex: "3",
+    backgroundColor: '#FAFAFA',
   },
   toolbarMain: {
     borderBottom: `1px solid ${theme.palette.grey[300]}`,
@@ -59,11 +61,19 @@ export const styles = theme => ({
   card: {
     display: 'flex',
   },
+  featuredCard: {
+    display: 'flex',
+
+  },
   cardDetails: {
     flex: 1,
   },
   cardMedia: {
     minHeight: 190,
+  },
+  featuredCardMedia: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
   },
   markdown: {
     padding: `${theme.spacing.unit * 3}px 0`,
@@ -83,5 +93,8 @@ export const styles = theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  lifted: {
+    margin: '-60px 0px 0px'
   }
 });
