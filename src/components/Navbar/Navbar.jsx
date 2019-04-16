@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Drawer from '@material-ui/core/Drawer';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link } from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import { withStyles} from "@material-ui/core";
 import {compose} from "redux";
 import {connect} from "react-redux";
@@ -46,7 +46,10 @@ class NavBar extends Component {
     const { classes, auth } = this.props;
     const { value, isDrawerOpen } = this.state;
 
-    const HomeLink = props => <Link to={"/"} {...props}/>;
+    const HomeLinkImg = props => <Link to={"/"} {...props}/>;
+    const HomeLink = props => <NavLink to={"/"} {...props}/>;
+    const AboutLink = props => <NavLink to="/about" {...props} />;
+    const EventsLink = props => <NavLink to="/events" {...props} />;
 
     return (
       <React.Fragment>
@@ -58,13 +61,13 @@ class NavBar extends Component {
             justify="space-between"
             alignItems="center"
           >
-            <ButtonBase component={HomeLink} className={classes.navImage}>
+            <ButtonBase component={HomeLinkImg} className={classes.navImage}>
               <img src={logo} alt={"FGV"} />
             </ButtonBase>
             <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
-              <Tab label="Blog" className={classes.navTabs}/>
-              <Tab label="Sobre" className={classes.navTabs}/>
-              <Tab label="Eventos" className={classes.navTabs}/>
+              <Tab label="Blog" className={classes.navTabs} component={HomeLink}/>
+              <Tab label="Sobre" className={classes.navTabs} component={AboutLink}/>
+              <Tab label="Eventos" className={classes.navTabs} component={EventsLink}/>
             </Tabs>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Abrir menu lateral" onClick={this.toggleDrawer(true)}>
               <MenuIcon />
