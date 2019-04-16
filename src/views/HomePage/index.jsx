@@ -18,6 +18,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Markdown from './Markdown';
 import PostList from './PostsList';
 import {styles} from './styles'
+import logo from '../../assets/datascience_logo.jpg'
 
 const featuredPosts = [
   {
@@ -59,7 +60,7 @@ function Blog(props) {
       <div className={classes.layout}>
         <main className={classes.main}>
           {/* Main featured post */}
-          <Paper className={classes.mainFeaturedPost}>
+          <Card className={classes.mainFeaturedPost}>
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturedPostContent}>
@@ -72,8 +73,11 @@ function Blog(props) {
                   </Typography>
                 </div>
               </Grid>
+              <Grid item md={6}>
+                {/*<CardMedia className={classes.media} image={logo} alt="a"/>*/}
+              </Grid>
             </Grid>
-          </Paper>
+          </Card>
           {/* End main featured post */}
           {/* Sub featured posts */}
           <Grid container spacing={40} className={classes.cardGrid}>

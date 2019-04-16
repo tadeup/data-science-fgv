@@ -1,3 +1,5 @@
+import logo from '../../../assets/datascience_logo.jpg'
+
 export const styles = theme => ({
   main: {
 
@@ -42,6 +44,8 @@ export const styles = theme => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing.unit * 4,
+    backgroundImage: `linear-gradient(to left, rgba(255,0,0,0), ${theme.palette.grey[800]}), url(${logo})`,
+    height: 320,
   },
   mainFeaturedPostContent: {
     padding: `${theme.spacing.unit * 6}px`,
