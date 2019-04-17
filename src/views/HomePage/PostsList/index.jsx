@@ -13,6 +13,7 @@ import Divider from "@material-ui/core/Divider";
 import FeaturedPost from "./FeaturedPost";
 import Sidebar from "./Sidebar";
 import Button from "@material-ui/core/es/Button/Button";
+import {NavLink} from "react-router-dom";
 
 const featuredPosts = [
   {
@@ -28,6 +29,8 @@ const featuredPosts = [
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
   },
 ];
+
+const BlogLink = props => <NavLink to={"/blog/page/1"} {...props}/>;
 
 class PostsList extends Component {
   renderPost(post, key) {
@@ -63,7 +66,7 @@ class PostsList extends Component {
               alignItems="center"
             >
               <Grid item>
-                <Button variant="outlined" color="primary" className={classes.moreButton}>
+                <Button variant="outlined" color="primary" className={classes.moreButton} component={BlogLink}>
                   Ver Mais
                 </Button>
               </Grid>

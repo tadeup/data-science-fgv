@@ -46,8 +46,8 @@ class NavBar extends Component {
     const { classes, auth } = this.props;
     const { value, isDrawerOpen } = this.state;
 
-    const HomeLinkImg = props => <Link to={"/"} {...props}/>;
-    const HomeLink = props => <NavLink to={"/"} {...props}/>;
+    const HomeLink = props => <Link to={"/"} {...props}/>;
+    const BlogLink = props => <NavLink to={"/blog/page/1"} {...props}/>;
     const AboutLink = props => <NavLink to="/about" {...props} />;
     const EventsLink = props => <NavLink to="/events" {...props} />;
 
@@ -61,11 +61,11 @@ class NavBar extends Component {
             justify="space-between"
             alignItems="center"
           >
-            <ButtonBase component={HomeLinkImg} className={classes.navImage}>
+            <ButtonBase component={HomeLink} className={classes.navImage}>
               <img src={logo} alt={"FGV"} />
             </ButtonBase>
             <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
-              <Tab label="Blog" className={classes.navTabs} component={HomeLink}/>
+              <Tab label="Blog" className={classes.navTabs} component={BlogLink}/>
               <Tab label="Sobre" className={classes.navTabs} component={AboutLink}/>
               <Tab label="Eventos" className={classes.navTabs} component={EventsLink}/>
             </Tabs>

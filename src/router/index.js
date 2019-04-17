@@ -3,6 +3,7 @@ import IntraView from '../views/IntraPage';
 import PostsView from '../views/PostsPage';
 import AboutPage from '../views/AboutPage';
 import EventsPage from '../views/EventsPage'
+import BlogPage from '../views/BlogPage'
 
 const indexRoutes = [
   //sub routes
@@ -12,6 +13,7 @@ const indexRoutes = [
   //main routes
   { path: "/about", name: "AboutPage", component: AboutPage },
   { path: "/events", name: "EventsPage", component: EventsPage },
+  { path: "/blog", name: "BlogPage", component: BlogPage },
 
   // home path must come last
   { path: "/", name: "homePage", component: homePage },
