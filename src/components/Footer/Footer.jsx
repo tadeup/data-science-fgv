@@ -43,7 +43,7 @@ const Footer = props => {
               Fax: 55 (11) 9999-9999
             </Typography>
             <Typography variant="subtitle2" color="textSecondary" component="p">
-              Email: nds@fgv.br
+              Email: <a href = "mailto: nds@fgv.br">nds@fgv.br</a>
             </Typography>
           </Grid>
         </Grid>
