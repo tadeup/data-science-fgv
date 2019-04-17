@@ -16,6 +16,7 @@ import Card from "@material-ui/core/es/Card/Card";
 import TextField from "@material-ui/core/es/TextField/TextField";
 import SearchIcon from '@material-ui/icons/Search';
 import Chip from "@material-ui/core/es/Chip/Chip";
+import SearchField from "../../components/SearchField/SearchField";
 
 
 const sidebarNews = [
@@ -62,23 +63,9 @@ function Post(props) {
                 </Typography>
               </div>
             </Grid>
-            <Grid item xs={4}>
-              <div style={{ borderLeft: '1px solid gray', paddingLeft: 20}}>
-                <Grid container spacing={8} alignItems="flex-end">
-                  <Grid item xs={2} md={1}>
-                    <SearchIcon />
-                  </Grid>
-                  <Grid item xs={10} md={11}>
-                    <TextField
-                      id="standard-search"
-                      label="Busca no blog"
-                      type="search"
-                      className={classes.textField}
-                      margin="normal"
-                      fullWidth
-                    />
-                  </Grid>
-                </Grid>
+            <Grid item xs={4} className={classes.sidebarGrid}>
+              <div className={classes.sidebarContainer}>
+                <SearchField/>
                 <Typography component={'h3'} variant={'h5'}>
                   Posts relacionados
                 </Typography>

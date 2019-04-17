@@ -114,7 +114,9 @@ export const styles = theme => ({
     }
   },
   mainHeader: {
-    fontWeight: 500,
-    margin: '-60px 0px 0px'
+    fontWeight: 600,
+    margin: '-60px 0px 0px',
+    color: 'rgba(247, 247, 247, 1)',
+    letterSpacing: 0.02 + 'em'
   },
 });

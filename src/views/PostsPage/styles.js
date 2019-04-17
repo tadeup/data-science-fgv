@@ -29,4 +29,13 @@ export const styles = theme => ({
   postTitle: {
     margin: '10px 0px 30px'
   },
+
+  sidebarGrid: {
+    marginTop: theme.spacing.unit * 4
+  },
+
+  sidebarContainer: {
+    padding: '10px 0px 40px 20px',
+    borderLeft: '1px solid #e0e0e0',
+  }
 });

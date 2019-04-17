@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import {Link as RouterLink} from "react-router-dom";
+import SearchField from "../../../components/SearchField/SearchField";
 
 const archives = [
   'March 2020',
@@ -35,6 +36,7 @@ const Sidebar = (props) => {
   return (
     <>
       <CssBaseline/>
+      <SearchField/>
       <Paper elevation={0} className={classes.sidebarAboutBox}>
         <Typography variant="h6" gutterBottom>
           Sobre
