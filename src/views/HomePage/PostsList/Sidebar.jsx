@@ -10,23 +10,6 @@ import Grid from "@material-ui/core/Grid";
 import {Link as RouterLink} from "react-router-dom";
 import SearchField from "../../../components/SearchField/SearchField";
 
-const archives = [
-  'March 2020',
-  'February 2020',
-  'January 2020',
-  'December 2019',
-  'November 2019',
-  'October 2019',
-  'September 2019',
-  'August 2019',
-  'July 2019',
-  'June 2019',
-  'May 2019',
-  'April 2019',
-];
-
-const social = ['GitHub', 'Twitter', 'Facebook'];
-
 const AboutLink = props => <RouterLink to="/about" {...props} />;
 
 
@@ -50,18 +33,9 @@ const Sidebar = (props) => {
           <Link component={AboutLink}>Leia mais...</Link>
         </Typography>
       </Paper>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Archives
-      </Typography>
-      {archives.map(archive => (
-        <Typography key={archive}>{archive}</Typography>
-      ))}
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Social
-      </Typography>
-      {social.map(network => (
-        <Typography key={network}>{network}</Typography>
-      ))}
+      {/*<Typography variant="h6" gutterBottom className={classes.sidebarSection}>*/}
+      {/*  Social*/}
+      {/*</Typography>*/}
     </>
   );
 };

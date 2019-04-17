@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import FeaturedPost from "./FeaturedPost";
 import Sidebar from "./Sidebar";
+import Button from "@material-ui/core/es/Button/Button";
 
 const featuredPosts = [
   {
@@ -55,6 +56,19 @@ class PostsList extends Component {
             </Typography>
             <Divider />
             {posts}
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item>
+                <Button variant="outlined" color="primary" className={classes.moreButton}>
+                  Ver Mais
+                </Button>
+              </Grid>
+            </Grid>
+
           </Grid>
 
           <Grid item xs={12} md={4}>

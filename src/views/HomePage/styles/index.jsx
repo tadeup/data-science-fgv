@@ -119,4 +119,7 @@ export const styles = theme => ({
     color: 'rgba(247, 247, 247, 1)',
     letterSpacing: 0.02 + 'em'
   },
+  moreButton: {
+    marginTop: theme.spacing.unit * 3
+  }
 });
