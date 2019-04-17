@@ -31,12 +31,12 @@ function Blog(props) {
       <Parallax small filter image={logo}>
         <div className={classes.mainContainer}>
           <Grid container>
-            <Grid item md={9}>
-              <Typography component="h1" variant="h2" color="inherit" gutterBottom className={classes.mainHeader}>
+            <Grid item md={8}>
+              <Typography component="h1" variant="h3" color="inherit" gutterBottom className={classes.mainHeader}>
                   NÚCLEO DE ESTUDOS EM DATA SCIENCE
               </Typography>
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={4}>
               {/*<CardMedia className={classes.media} image={logo} alt="a"/>*/}
             </Grid>
           </Grid>
@@ -49,16 +49,6 @@ function Blog(props) {
 
         </main>
       </div>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography>
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }

@@ -1,3 +1,5 @@
+import { NAVBAR_HEIGHT } from "../../constants";
+
 export const styles = theme => ({
   navGrid: {
     paddingRight: theme.spacing.unit * 5,
@@ -10,7 +12,7 @@ export const styles = theme => ({
   },
 
   navTabs: {
-    height: 62
+    height: NAVBAR_HEIGHT
   },
 
   navList: {

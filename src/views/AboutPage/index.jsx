@@ -14,7 +14,7 @@ const AboutPage = (props) => {
   return (
     <div className={classes.layout}>
       <CssBaseline/>
-      <Typography component="h1" variant="h2">
+      <Typography component="h1" variant="h3">
         Quem Somos
       </Typography>
       <br/>
