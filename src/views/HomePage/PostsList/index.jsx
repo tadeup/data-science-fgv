@@ -94,6 +94,8 @@ export default compose(
       return [
         {
           collection: 'posts',
+          orderBy: ['postDate', 'desc'],
+          limit: 9
         }
       ]
     }
