@@ -20,7 +20,7 @@ const DrawerListAuth = props => {
   const BlogLink = props => <Link to={"/blog/page/1"} {...props}/>;
   const AboutLink = props => <Link to="/about" {...props} />;
   const EventsLink = props => <Link to="/events" {...props} />;
-  
+
   return (
     <React.Fragment>
 
