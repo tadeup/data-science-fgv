@@ -1,5 +1,5 @@
 export const styles = theme => ({
-  layout: {
+  main: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 4,
     marginRight: theme.spacing.unit * 4,
@@ -8,17 +8,27 @@ export const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    paddingTop: 20
+  },
+  paper: {
+    margin: `${theme.spacing.unit}px auto`,
+    padding: theme.spacing.unit * 2,
   },
   postBody: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+
 
   },
   postTitle: {
-    marginLeft: theme.spacing.unit * 5,
-    marginRight: theme.spacing.unit * 5,
+
   },
   postAuthor: {
 
+  },
+  postButton: {
+    marginTop: 30
+  },
+  mdeEditor: {
+    marginBottom: 16,
+    marginTop: 8
   }
 });

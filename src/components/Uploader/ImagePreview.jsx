@@ -15,6 +15,7 @@ import GridList from "@material-ui/core/es/GridList/GridList";
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from "@material-ui/core/es/Divider/Divider";
+import Grid from '@material-ui/core/Grid';
 import {Link} from "react-router-dom";
 
 const styles = theme => ({
@@ -24,7 +25,8 @@ const styles = theme => ({
   card: {
     maxWidth: 100,
     maxHeight: 145,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: 10
   },
   media: {
     height: 0,
@@ -65,7 +67,7 @@ function ImagePreview(props) {
 
   if (stagedImages.length) {
     return (
-      <Paper className="container">
+      <>
         <GridList className={classes.gridList} cols={2.5}>
           {stagedImages.map((el, index) => {
             return (
@@ -84,7 +86,7 @@ function ImagePreview(props) {
             )
           })}
         </GridList>
-      </Paper>
+      </>
     );
   } else {
     return null;
