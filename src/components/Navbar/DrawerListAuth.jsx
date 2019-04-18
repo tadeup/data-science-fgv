@@ -11,12 +11,40 @@ import { Link } from "react-router-dom";
 import { compose } from "redux";
 import { firebaseConnect } from "react-redux-firebase";
 import { styles } from "./styles";
+import Hidden from '@material-ui/core/Hidden';
 
 const DrawerListAuth = props => {
   const NewPostLink = props => <Link to="/intra/newpost" {...props} />;
   const ProfileLink = props => <Link to="#" {...props} />;
+
+  const BlogLink = props => <Link to={"/blog/page/1"} {...props}/>;
+  const AboutLink = props => <Link to="/about" {...props} />;
+  const EventsLink = props => <Link to="/events" {...props} />;
+  
   return (
     <React.Fragment>
+
+      <Hidden mdUp>
+        <Divider/>
+
+        <List>
+          <ListItem button component={BlogLink} key={"Blog"}>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary={'Blog'} />
+          </ListItem>
+
+          <ListItem button component={AboutLink} key={"Sobre"}>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary={'Sobre'} />
+          </ListItem>
+
+          <ListItem button component={EventsLink} key={"Eventos"}>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary={'Eventos'} />
+          </ListItem>
+
+        </List>
+      </Hidden>
 
       <Divider/>
 

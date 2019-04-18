@@ -18,6 +18,7 @@ import DrawerListAuth from "./DrawerListAuth";
 import DrawerList from "./DrawerList";
 import {styles} from "./styles";
 import logo from '../../assets/logo.svg'
+import Hidden from '@material-ui/core/Hidden';
 
 class NavBar extends Component {
   state = {
@@ -64,11 +65,13 @@ class NavBar extends Component {
             <ButtonBase component={HomeLink} className={classes.navImage}>
               <img src={logo} alt={"FGV"} />
             </ButtonBase>
-            <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
-              <Tab label="Blog" className={classes.navTabs} component={BlogLink}/>
-              <Tab label="Sobre" className={classes.navTabs} component={AboutLink}/>
-              <Tab label="Eventos" className={classes.navTabs} component={EventsLink}/>
-            </Tabs>
+            <Hidden smDown>
+              <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={this.handleChange}>
+                <Tab label="Blog" className={classes.navTabs} component={BlogLink}/>
+                <Tab label="Sobre" className={classes.navTabs} component={AboutLink}/>
+                <Tab label="Eventos" className={classes.navTabs} component={EventsLink}/>
+              </Tabs>
+            </Hidden>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Abrir menu lateral" onClick={this.toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
