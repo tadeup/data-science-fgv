@@ -41,20 +41,20 @@ function SignIn(props) {
             <LockOutlinedIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Entrar
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <InputLabel htmlFor="email">Email</InputLabel>
               <Input id="email" name="email" autoComplete="email" autoFocus/>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
+              <InputLabel htmlFor="password">Senha</InputLabel>
               <Input name="password" type="password" id="password" autoComplete="current-password"/>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary"/>}
-              label="Remember me"
+              label="Manter-me conectado"
             />
             <Button
               type="submit"
@@ -63,7 +63,7 @@ function SignIn(props) {
               color="primary"
               className={classes.submit}
             >
-              Sign in
+              Entrar
             </Button>
           </form>
         </Paper>

@@ -13,7 +13,7 @@ import { firebaseConnect } from "react-redux-firebase";
 import { styles } from "./styles";
 
 const DrawerList = props => {
-  const FeedLink = props => <Link to="#" {...props} />;
+  const FeedLink = props => <Link to="/register" {...props} />;
   const ContactLink = props => <Link to="#" {...props} />;
   const LoginLink = props => <Link to="/intra/login" {...props} />;
 
