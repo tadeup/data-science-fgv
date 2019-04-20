@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { firestoreConnect, firebaseConnect } from 'react-redux-firebase'
+import { firestoreConnect, firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
 import { withStyles } from "@material-ui/core";
 import { styles } from "./styles";
@@ -18,6 +18,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/es/Button";
+import { goToNext, goToPrev } from "./redux/actions";
 
 const mostRead = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et massa leo',
@@ -34,18 +35,26 @@ const BlogPagination = (props) => {
       <PostElement post={post} key={key}/>
     )
   };
-
+  const { classes, blogPage } = props;
   const page = parseInt(props.match.params.page);
 
-  const BackLink = props => <Link to={`/blog/page/${page - 1}`} {...props}/>;
-  const NextLink = props => <Link to={`/blog/page/${page + 1}`} {...props}/>;
+  const BackLink = props => <Link to={`/blog/page/${blogPage.lastDates}`} {...props}/>;
+  const NextLink = props => <Link to={`/blog/page/${lastDate}`} {...props}/>;
 
-  const posts = props.posts.map((post, key) => {
-    return key >= ((page-1)*10) && key <= ((page-1)*10+10)
-      ? renderPost(post, key)
-      : null
-  });
-  const { classes } = props;
+  const posts = props.posts.map((post, key) => renderPost(post, key));
+
+  const handlePageChange = (button) => {
+    if (button === 'next') {
+      props.goToNext(lastDate)
+    } else if (button === 'prev') {
+      props.goToPrev(lastDate)
+    }
+  };
+
+  let lastDate;
+  if (isLoaded(props.posts) && !isEmpty(props.posts)) {
+    lastDate = props.posts[props.posts.length - 1].postDate.toDate();
+  }
 
   return (
     <React.Fragment>
@@ -70,6 +79,7 @@ const BlogPagination = (props) => {
               >
                 <Grid item>
                   <IconButton
+                    onClick={() => handlePageChange('prev')}
                     component={BackLink}
                     disabled={page <= 1}
                     aria-label="Next Page"
@@ -82,6 +92,7 @@ const BlogPagination = (props) => {
                   </Button>
 
                   <IconButton
+                    onClick={() => handlePageChange('next')}
                     component={NextLink}
                     disabled={posts.length % 10 > 0}
                     aria-label="Next Page"
@@ -123,12 +134,14 @@ const mapStateToProps = state => {
     posts: state.firestore.ordered.posts
       ? state.firestore.ordered.posts
       : [],
+    blogPage: state.blogPage
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearFirestore: () => dispatch({ type: '@@reduxFirestore/CLEAR_DATA' })
+    goToNext: lastDate => dispatch(goToNext(lastDate)),
+    goToPrev: lastDate => dispatch(goToPrev(lastDate)),
   }
 };
 
@@ -140,7 +153,10 @@ export default compose(
       {
         collection: 'posts',
         orderBy: ['postDate', 'desc'],
-        limit: parseInt(props.match.params.page) * 10
+        where: [
+          ['postDate',  '<', new Date()],
+        ],
+        limit: 10
       }
     ]
   }),
