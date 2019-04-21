@@ -19,7 +19,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/es/Button";
-import { gotoNext, gotoPrev } from "./redux/actions";
+import { gotoNext, gotoPrev, leavePage } from "./redux/actions";
 import Loader from "../../components/Loader/Loader";
 
 const mostRead = [
@@ -146,6 +146,10 @@ class BlogPagination extends Component {
   componentDidMount() {
     window.scrollTo(0, 0)
   }
+
+  componentWillUnmount() {
+    this.props.leavePage()
+  }
 }
 
 
@@ -166,6 +170,7 @@ const mapDispatchToProps = dispatch => {
   return {
     gotoNext: payload => dispatch(gotoNext(payload)),
     gotoPrev: payload => dispatch(gotoPrev(payload)),
+    leavePage: payload => dispatch(leavePage(payload)),
     clearFirestore: () => dispatch({ type: actionTypes.CLEAR_DATA })
   }
 };
