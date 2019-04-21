@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {CssBaseline, withStyles} from "@material-ui/core";
 import {styles} from "./styles";
@@ -17,6 +17,8 @@ import TextField from "@material-ui/core/es/TextField/TextField";
 import SearchIcon from '@material-ui/icons/Search';
 import Chip from "@material-ui/core/es/Chip/Chip";
 import SearchField from "../../components/SearchField/SearchField";
+import {actionTypes} from "redux-firestore";
+import Loader from "../../components/Loader/Loader";
 
 
 const sidebarNews = [
@@ -32,10 +34,21 @@ const tags = [
 ];
 
 function Post(props) {
-  const { classes, match, post } = props;
-  if (!isLoaded(post)) return <CircularProgress />;
-  if (isEmpty(post)) return <NoPost />;
+
+  const { classes, match, postArray } = props;
+
+  if (!isLoaded(postArray)) return <Loader/> ;
+  if (isEmpty(postArray)) return <NoPost />;
+
+  const post = postArray[0];
+
   const postDate = moment(post.postDate.toDate()).locale('pt-BR').format('DD MM YYYY [às] HH:mm');
+
+  //mount effect
+  useEffect( () => window.scrollTo(0, 0), [] );
+  //unmount effect
+  useEffect( () => () => props.clearFirestore(), [] );
+
   return (
     <React.Fragment>
       <CssBaseline/>
@@ -97,15 +110,13 @@ Post.propTypes = {};
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    post: state.firestore.ordered.posts
-      ? state.firestore.ordered.posts[0]
-      : []
+    postArray: state.firestore.ordered.post
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearFirestore: () => dispatch({ type: '@@reduxFirestore/CLEAR_DATA' })
+    clearFirestore: () => dispatch({ type: actionTypes.CLEAR_DATA, preserve: { data: ['posts'], ordered: ['posts'] } })
   }
 };
 
@@ -118,6 +129,7 @@ export default compose(
         {
           collection: 'posts',
           doc: props.match.params.postid,
+          storeAs: 'post'
         }
       ]
     }

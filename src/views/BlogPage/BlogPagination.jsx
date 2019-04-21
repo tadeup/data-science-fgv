@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect, firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import { actionTypes } from "redux-firestore";
 import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
 import { withStyles } from "@material-ui/core";
 import { styles } from "./styles";
@@ -49,11 +50,14 @@ class BlogPagination extends Component {
   };
 
   handlePrevPage = () => {
+    this.props.clearFirestore();
+    window.scrollTo(0, 0);
     this.setState({page: this.state.page - 1});
     this.props.gotoPrev(this.props.posts[this.props.posts.length-1])
   };
 
   handleNextPage = () => {
+    this.props.clearFirestore();
     window.scrollTo(0, 0);
     const lastPostId = this.props.posts[this.props.posts.length - 1].id;
     this.setState({page: this.state.page + 1, isLoading: true});
@@ -72,7 +76,6 @@ class BlogPagination extends Component {
     if (isLoading || !isLoaded(this.props.posts)) return <Loader/> ;
 
     const posts = this.props.posts.map((post, key) => {return this.renderPost(post, key)});
-
     return (
       <React.Fragment>
         <CssBaseline/>
@@ -139,6 +142,10 @@ class BlogPagination extends Component {
       </React.Fragment>
     );
   }
+
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
 }
 
 
@@ -152,14 +159,14 @@ const mapStateToProps = state => {
   return {
     posts: state.firestore.ordered.posts,
     lastPost: state.blogPage.lastPost,
-    estado: state,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     gotoNext: payload => dispatch(gotoNext(payload)),
-    gotoPrev: payload => dispatch(gotoPrev(payload))
+    gotoPrev: payload => dispatch(gotoPrev(payload)),
+    clearFirestore: () => dispatch({ type: actionTypes.CLEAR_DATA })
   }
 };
 
