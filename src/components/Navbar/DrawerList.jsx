@@ -20,7 +20,7 @@ const DrawerList = props => {
   const ContactLink = props => <Link to="#" {...props} />;
   const LoginLink = props => <Link to="/intra/login" {...props} />;
 
-  const BlogLink = props => <Link to={"/blog/page/1"} {...props}/>;
+  const BlogLink = props => <Link to={"/blog/pages"} {...props}/>;
   const AboutLink = props => <Link to="/about" {...props} />;
   const EventsLink = props => <Link to="/events" {...props} />;
 

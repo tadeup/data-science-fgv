@@ -30,7 +30,7 @@ const featuredPosts = [
   },
 ];
 
-const BlogLink = props => <NavLink to={"/blog/page/1"} {...props}/>;
+const BlogLink = props => <NavLink to={"/blog/pages"} {...props}/>;
 
 class PostsList extends Component {
   renderPost(post, key) {

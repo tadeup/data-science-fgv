@@ -17,7 +17,7 @@ const DrawerListAuth = props => {
   const NewPostLink = props => <Link to="/intra/newpost" {...props} />;
   const ProfileLink = props => <Link to="#" {...props} />;
 
-  const BlogLink = props => <Link to={"/blog/page/1"} {...props}/>;
+  const BlogLink = props => <Link to={"/blog/pages"} {...props}/>;
   const AboutLink = props => <Link to="/about" {...props} />;
   const EventsLink = props => <Link to="/events" {...props} />;
 

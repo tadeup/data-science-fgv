@@ -48,7 +48,7 @@ class NavBar extends Component {
     const { value, isDrawerOpen } = this.state;
 
     const HomeLink = props => <Link to={"/"} {...props}/>;
-    const BlogLink = props => <NavLink to={"/blog/page/1"} {...props}/>;
+    const BlogLink = props => <NavLink to={"/blog/pages"} {...props}/>;
     const AboutLink = props => <NavLink to="/about" {...props} />;
     const EventsLink = props => <NavLink to="/events" {...props} />;
 
