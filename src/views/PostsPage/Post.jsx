@@ -19,7 +19,7 @@ import Chip from "@material-ui/core/es/Chip/Chip";
 import SearchField from "../../components/SearchField/SearchField";
 import {actionTypes} from "redux-firestore";
 import Loader from "../../components/Loader/Loader";
-
+import ReactMarkdown from 'react-markdown'
 
 const sidebarNews = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et massa leo',
@@ -72,7 +72,7 @@ function Post(props) {
                 />
 
                 <Typography component={'h1'} variant={"body1"}>
-                  {post.postBody}
+                  <ReactMarkdown source={post.postBody}/>
                 </Typography>
               </div>
             </Grid>
