@@ -17,16 +17,16 @@ import {NavLink} from "react-router-dom";
 
 const featuredPosts = [
   {
-    title: 'Featured post',
+    title: 'Primeiro em destaque',
     date: 'Nov 12',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      'Ut sed cursus odio. Donec massa nulla, fermentum sed luctus ac, posuere vitae risus.',
   },
   {
-    title: 'Post title',
+    title: 'Segundo em destaque',
     date: 'Nov 11',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum commodo est.',
   },
 ];
 
