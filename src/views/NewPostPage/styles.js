@@ -30,5 +30,18 @@ export const styles = theme => ({
   mdeEditor: {
     marginBottom: 16,
     marginTop: 8
-  }
+  },
+
+  tagsControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+    maxWidth: 300,
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: theme.spacing.unit / 4,
+  },
 });

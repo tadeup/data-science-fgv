@@ -15,8 +15,36 @@ import ImagePreview from "../../components/Uploader/ImagePreview";
 import ReactMde from "react-mde";
 import Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
+import FormControl from "@material-ui/core/es/FormControl/FormControl";
+import InputLabel from "@material-ui/core/es/InputLabel/InputLabel";
+import Select from "@material-ui/core/es/Select/Select";
+import MenuItem from "@material-ui/core/es/MenuItem/MenuItem";
+import Chip from "@material-ui/core/es/Chip/Chip";
+import {actionTypes} from "redux-firestore";
+import NewTag from "../../components/Tags/NewTag";
+import Input from "@material-ui/core/es/Input/Input";
 
 const standardUrl = 'https://firebasestorage.googleapis.com/v0/b/data-science-fgv.appspot.com/o/defaultFiles%2Funnamed.jpg?alt=media&token=6a44a8d1-15a1-45d7-af46-87ec7ca503c2';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+function getStyles(name, that) {
+  return {
+    fontWeight:
+      that.state.tags.indexOf(name) === -1
+        ? that.props.theme.typography.fontWeightRegular
+        : that.props.theme.typography.fontWeightMedium,
+  };
+}
 
 class NewPost extends Component {
   constructor(props) {
@@ -26,7 +54,8 @@ class NewPost extends Component {
       tab: "write",
       postTitle: '',
       postBody: '',
-      postAuthor: 'Roshman'
+      postAuthor: 'Roshman',
+      tags: []
     };
     this.converter = new Showdown.Converter({
       tables: true,
@@ -63,14 +92,17 @@ class NewPost extends Component {
       {
         postAuthor: this.state.postAuthor,
         postTitle: this.state.postTitle,
-        postShorty,
         postBody: this.state.postBody,
+        tags: this.state.tags,
+        postShorty,
         postImgUrl,
         postDate: this.props.firestore.Timestamp.fromDate(new Date()),
         postOpId: this.props.uid
       }
-    );
-    this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshman' });
+    ).then(() => {
+      this.props.clearFirestore()
+    });
+    this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshman', tags: [] });
   };
 
   render() {
@@ -116,6 +148,31 @@ class NewPost extends Component {
             selectedTab={this.state.tab}
             className={classes.mdeEditor}
           />
+
+          <FormControl className={classes.tagsControl}>
+            <InputLabel htmlFor="select-multiple-chip">Tags</InputLabel>
+            <Select
+              multiple
+              value={this.state.tags}
+              onChange={this.handleChange('tags')}
+              input={<Input id="select-multiple-chip" />}
+              renderValue={selected => (
+                <div className={classes.chips}>
+                  {selected.map(value => (
+                    <Chip key={value} label={value} className={classes.chip} />
+                  ))}
+                </div>
+              )}
+              MenuProps={MenuProps}
+            >
+              {this.props.tagNames.map(name => (
+                <MenuItem key={name} value={name} style={getStyles(name, this)}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           <Uploader/>
           <ImagePreview/>
           <Grid
@@ -135,6 +192,7 @@ class NewPost extends Component {
           </Grid>
 
         </Paper>
+        <NewTag/>
       </main>
     );
   }
@@ -150,14 +208,28 @@ NewPost.propTypes = {
 const mapStateToProps = state => {
   return {
     uid: state.firebase.auth.uid,
-    newPost: state.newPost
+    newPost: state.newPost,
+    tagNames: state.firestore.ordered.tags
+      ? state.firestore.ordered.tags.map(el => el.tagName)
+      : []
   }
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => {
+  return {
+    clearFirestore: () => dispatch({ type: actionTypes.CLEAR_DATA })
+  }
+};
 
 export default compose(
-  withStyles(styles),
+  withStyles(styles, { withTheme: true }),
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect(),
+  firestoreConnect((props) => {
+    return [
+      {
+        collection: 'tags',
+        orderBy: ['tagName']
+      }
+    ]
+  }),
 )(NewPost)
