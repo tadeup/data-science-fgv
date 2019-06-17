@@ -53,6 +53,7 @@ class NewPost extends Component {
       value: "",
       tab: "write",
       postTitle: '',
+      postSubtitle: '',
       postBody: '',
       postAuthor: 'Roshman',
       tags: []
@@ -80,9 +81,6 @@ class NewPost extends Component {
   };
 
   handleSubmit = () => event => {
-    const postShorty = this.state.postBody.length > 140
-      ? `${this.state.postBody.substring(0, 140)}...`
-      : this.state.postBody;
     const postImgUrl = this.props.newPost.stagedImages.length
       ? this.props.newPost.stagedImages.find(el => el.isHeader).url
       : standardUrl;
@@ -92,17 +90,30 @@ class NewPost extends Component {
       {
         postAuthor: this.state.postAuthor,
         postTitle: this.state.postTitle,
+        postSubtitle: this.state.postSubtitle,
         postBody: this.state.postBody,
         tags: this.state.tags,
-        postShorty,
         postImgUrl,
         postDate: this.props.firestore.Timestamp.fromDate(new Date()),
-        postOpId: this.props.uid
+        postOpId: this.props.uid,
+        destaque: false
       }
     ).then(() => {
       this.props.clearFirestore()
     });
-    this.setState({ postTitle: '', postBody: '',  postAuthor: 'Roshman', tags: [] });
+    this.setState({ postTitle: '', postSubtitle: '', postBody: '',  postAuthor: 'Roshman', tags: [] });
+  };
+
+  handleSubtitle = event => {
+    if (event.target.value.length < 100) {
+      this.setState({
+        postSubtitle: event.target.value,
+      });
+    } else {
+      this.setState({
+        postSubtitle: event.target.value.substring(0, 100),
+      });
+    }
   };
 
   render() {
@@ -127,7 +138,7 @@ class NewPost extends Component {
                          onChange={this.handleChange('postTitle')}
               />
             </Grid>
-            <Grid item>
+            <Grid item xs={3}>
               <TextField id="post-author"
                          label="Autor(a)"
                          placeholder="Autor(a)"
@@ -136,6 +147,21 @@ class NewPost extends Component {
                          margin="normal"
                          value={this.state.postAuthor}
                          onChange={this.handleChange('postAuthor')}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            spacing={16}
+            direction={'row'}
+          >
+            <Grid item xs={12}>
+              <TextField label={'Sub-título'}
+                         placeholder={'Sub-titulo'}
+                         fullWidth
+                         className={classes.postTitle}
+                         value={this.state.postSubtitle}
+                         onChange={this.handleSubtitle}
               />
             </Grid>
           </Grid>

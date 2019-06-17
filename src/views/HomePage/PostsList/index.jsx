@@ -46,7 +46,7 @@ class PostsList extends Component {
       <React.Fragment>
 
         <Grid container spacing={40} className={classes.cardGrid}>
-          {featuredPosts.map((post, key) => (
+          {this.props.featuredPosts.map((post, key) => (
             <FeaturedPost post={post} key={key}/>
           ))}
         </Grid>
@@ -79,6 +79,7 @@ class PostsList extends Component {
           </Grid>
 
         </Grid>
+        {console.log(this.props.estado)}
       </React.Fragment>
     );
   }
@@ -98,6 +99,10 @@ const mapStateToProps = state => {
     posts: state.firestore.ordered.posts
       ? state.firestore.ordered.posts
       : [],
+    featuredPosts: state.firestore.ordered.featuredPosts
+      ? state.firestore.ordered.featuredPosts
+      : [],
+    estado: state
   }
 };
 
@@ -113,7 +118,13 @@ export default compose(
           collection: 'posts',
           orderBy: ['postDate', 'desc'],
           limit: 9
-        }
+        },
+        {
+          collection: 'posts',
+          where: ['destaque', '==', true],
+          limit: 2,
+          storeAs: 'featuredPosts'
+        },
       ]
     }
   )

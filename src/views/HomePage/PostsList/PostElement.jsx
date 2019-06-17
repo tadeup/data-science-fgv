@@ -32,7 +32,7 @@ const PostElement = ({post, classes}) => {
                   {postDate}
                 </Typography>
                 <Typography variant="subtitle1" paragraph>
-                  {post.postShorty}
+                  {post.postSubtitle}
                 </Typography>
               </CardContent>
             </Grid>
