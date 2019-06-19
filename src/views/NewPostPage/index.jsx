@@ -175,29 +175,43 @@ class NewPost extends Component {
             className={classes.mdeEditor}
           />
 
-          <FormControl className={classes.tagsControl}>
-            <InputLabel htmlFor="select-multiple-chip">Tags</InputLabel>
-            <Select
-              multiple
-              value={this.state.tags}
-              onChange={this.handleChange('tags')}
-              input={<Input id="select-multiple-chip" />}
-              renderValue={selected => (
-                <div className={classes.chips}>
-                  {selected.map(value => (
-                    <Chip key={value} label={value} className={classes.chip} />
+          <Grid
+            container
+            direction="row"
+            justify="space-around"
+            alignItems="center"
+            spacing={16}
+          >
+            <Grid item>
+              <FormControl className={classes.tagsControl}>
+                <InputLabel htmlFor="select-multiple-chip">Tags</InputLabel>
+                <Select
+                  multiple
+                  value={this.state.tags}
+                  onChange={this.handleChange('tags')}
+                  input={<Input id="select-multiple-chip" />}
+                  renderValue={selected => (
+                    <div className={classes.chips}>
+                      {selected.map(value => (
+                        <Chip key={value} label={value} className={classes.chip} />
+                      ))}
+                    </div>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {this.props.tagNames.map(name => (
+                    <MenuItem key={name} value={name} style={getStyles(name, this)}>
+                      {name}
+                    </MenuItem>
                   ))}
-                </div>
-              )}
-              MenuProps={MenuProps}
-            >
-              {this.props.tagNames.map(name => (
-                <MenuItem key={name} value={name} style={getStyles(name, this)}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item>
+              <NewTag/>
+            </Grid>
+          </Grid>
+
 
           <Uploader/>
           <ImagePreview/>
@@ -218,7 +232,6 @@ class NewPost extends Component {
           </Grid>
 
         </Paper>
-        <NewTag/>
       </main>
     );
   }

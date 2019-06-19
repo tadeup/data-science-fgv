@@ -5,7 +5,7 @@ import { compose } from 'redux'
 import { firestoreConnect, firebaseConnect } from 'react-redux-firebase'
 import { actionTypes } from "redux-firestore";
 import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
-import { withStyles } from "@material-ui/core";
+import {Button, Grid, TextField, withStyles} from "@material-ui/core";
 import { styles } from "./styles";
 
 // STATELESS
@@ -33,8 +33,26 @@ class NewTag extends Component {
     return (
       <>
         <CssBaseline/>
-        <input type="text" value={this.state.tagName} onChange={this.handleChange}/>
-        <button onClick={this.handleSubmit}>submit</button>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="flex-end"
+          spacing={16}
+        >
+          <Grid item>
+            <TextField
+              label="Nova Tag"
+              placeholder="Nova Tag"
+              type="text"
+              value={this.state.tagName}
+              onChange={this.handleChange}
+            />
+          </Grid>
+          <Grid item>
+            <Button onClick={this.handleSubmit}>submit</Button>
+          </Grid>
+        </Grid>
       </>
     );
   }
