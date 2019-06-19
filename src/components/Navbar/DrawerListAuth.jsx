@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import { Settings as SettingsIcons, ExitToApp as ExitIcons } from "@material-ui/icons"
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
@@ -15,7 +16,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 const DrawerListAuth = props => {
   const NewPostLink = props => <Link to="/intra/newpost" {...props} />;
-  const ProfileLink = props => <Link to="#" {...props} />;
+  const SettingsLink = props => <Link to="/intra/settings" {...props} />;
 
   const BlogLink = props => <Link to={"/blog/pages"} {...props}/>;
   const AboutLink = props => <Link to="/about" {...props} />;
@@ -54,8 +55,8 @@ const DrawerListAuth = props => {
         <ListItemText primary={'Novo Artigo'} />
       </ListItem>
 
-      <ListItem button component={ProfileLink} key={"config"}>
-        <ListItemIcon><InboxIcon /></ListItemIcon>
+      <ListItem button component={SettingsLink} key={"config"}>
+        <ListItemIcon><SettingsIcons/></ListItemIcon>
         <ListItemText primary={'Configurações'} />
       </ListItem>
       </List>
@@ -64,7 +65,7 @@ const DrawerListAuth = props => {
 
       <List>
         <ListItem button key={"logout"} onClick={() => {props.firebase.logout();}}>
-          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemIcon><ExitIcons /></ListItemIcon>
           <ListItemText primary={'Logout'} />
         </ListItem>
       </List>
