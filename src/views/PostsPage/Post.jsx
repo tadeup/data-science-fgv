@@ -1,6 +1,6 @@
 import React, {Component, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {CssBaseline, withStyles} from "@material-ui/core";
+import {CssBaseline, List, ListItem, withStyles} from "@material-ui/core";
 import {styles} from "./styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
@@ -20,22 +20,11 @@ import SearchField from "../../components/SearchField/SearchField";
 import {actionTypes} from "redux-firestore";
 import Loader from "../../components/Loader/Loader";
 import ReactMarkdown from 'react-markdown'
-
-const sidebarNews = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et massa leo',
-  'Nunc ullamcorper ultrices lacinia. Nulla a lacus pulvinar',
-  'Duis lacinia volutpat porta. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-  'Ut pharetra laoreet rutrum.',
-  'Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla aliquet lobortis est ac pulvinar.'
-];
-
-const tags = [
-  'Proin', 'aliquet', 'pretium', 'suscipit', 'Duis', 'dictum', 'orci', 'quis', 'metus', 'sollicitudin'
-];
+import {Link} from "react-router-dom";
 
 function Post(props) {
 
-  const { classes, match, postArray } = props;
+  const { classes, match, postArray, sidebarNews } = props;
 
   if (!isLoaded(postArray)) return <Loader/> ;
   if (isEmpty(postArray)) return <NoPost />;
@@ -48,6 +37,10 @@ function Post(props) {
   useEffect( () => window.scrollTo(0, 0), [] );
   //unmount effect
   useEffect( () => () => props.clearFirestore(), [] );
+
+  const sidebaLink = props => {
+    return <Link {...props} />;
+  };
 
   return (
     <React.Fragment>
@@ -80,20 +73,20 @@ function Post(props) {
               <div className={classes.sidebarContainer}>
                 <SearchField/>
                 <Typography component={'h3'} variant={'h5'}>
-                  Posts relacionados
+                  Novidades
                 </Typography>
-                <ol>
+                <List>
                   {sidebarNews.map((el, key) => {
                     return(
-                      <li key={key}>{el}</li>
+                      <ListItem button component={sidebaLink} to={`/posts/${el.id}`} key={key}>{el.postTitle}</ListItem>
                     )
                   })}
-                </ol>
+                </List>
 
                 <Typography component={'h3'} variant={'h5'}>
                   Tags
                 </Typography>
-                {tags.map((el, key) => {
+                {post.tags.map((el, key) => {
                   return <Chip key={key} label={el} variant="outlined"/>
                 })}
               </div>
@@ -110,7 +103,8 @@ Post.propTypes = {};
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    postArray: state.firestore.ordered.post
+    postArray: state.firestore.ordered.post,
+    sidebarNews: state.firestore.ordered.sidePosts ? state.firestore.ordered.sidePosts : []
   }
 };
 
@@ -130,6 +124,12 @@ export default compose(
           collection: 'posts',
           doc: props.match.params.postid,
           storeAs: 'post'
+        },
+        {
+          collection: 'posts',
+          limit: 5,
+          orderBy: ['postDate', 'desc'],
+          storeAs: 'sidePosts'
         }
       ]
     }

@@ -16,6 +16,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 const DrawerListAuth = props => {
   const NewPostLink = props => <Link to="/intra/newpost" {...props} />;
+  const NewEventLink = props => <Link to="/intra/newevent" {...props} />;
   const SettingsLink = props => <Link to="/intra/settings" {...props} />;
 
   const BlogLink = props => <Link to={"/blog/pages"} {...props}/>;
@@ -50,15 +51,20 @@ const DrawerListAuth = props => {
       <Divider/>
 
       <List>
-      <ListItem button component={NewPostLink} key={"newpost"}>
-        <ListItemIcon><InboxIcon /></ListItemIcon>
-        <ListItemText primary={'Novo Artigo'} />
-      </ListItem>
+        <ListItem button component={NewPostLink} key={"newpost"}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={'Novo Artigo'} />
+        </ListItem>
 
-      <ListItem button component={SettingsLink} key={"config"}>
-        <ListItemIcon><SettingsIcons/></ListItemIcon>
-        <ListItemText primary={'Configurações'} />
-      </ListItem>
+        <ListItem button component={NewEventLink} key={"newevent"}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={'Novo Evento'} />
+        </ListItem>
+
+        <ListItem button component={SettingsLink} key={"config"}>
+          <ListItemIcon><SettingsIcons/></ListItemIcon>
+          <ListItemText primary={'Configurações'} />
+        </ListItem>
       </List>
 
       <Divider />
