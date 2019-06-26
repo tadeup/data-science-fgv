@@ -184,7 +184,7 @@ class _TEMPLATE extends Component {
                     </ExpansionPanelDetails>
                     <Divider/>
                     <ExpansionPanelActions>
-                      <Button size="small" color="primary">Participar</Button>
+                      {el.eventRegistration ? <Button size="small" color="primary" href={el.eventRegistration}>Participar</Button> : <Button size="small" color="primary" disabled>Participar</Button>}
                     </ExpansionPanelActions>
                   </ExpansionPanel>
                 )

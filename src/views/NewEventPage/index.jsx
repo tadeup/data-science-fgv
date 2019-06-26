@@ -61,6 +61,7 @@ class NewEvent extends Component {
       eventAddress: '',
       eventBody: '',
       eventDate: new Date(),
+      eventRegistration: '',
       eventProfessors: [],
       professorName: '',
       professorDescription: '',
@@ -89,6 +90,7 @@ class NewEvent extends Component {
         eventBody: this.state.eventBody,
         eventDate: this.props.firestore.Timestamp.fromDate(new Date(this.state.eventDate.valueOf())),
         eventProfessors: this.state.eventProfessors,
+        eventRegistration: this.state.eventRegistration,
         eventOpId: this.props.uid,
       }
     ).then(() => {
@@ -104,6 +106,7 @@ class NewEvent extends Component {
       eventProfessors: [],
       professorName: '',
       professorDescription: '',
+      eventRegistration: ''
     });
   };
 
@@ -302,10 +305,26 @@ class NewEvent extends Component {
           </Grid>
           <Grid
             container
+            spacing={16}
+            direction={'row'}
+          >
+            <Grid item xs={12}>
+              <TextField label={'Link para Instrição'}
+                         placeholder={'Link para Instrição'}
+                         fullWidth
+                         className={classes.eventAddress}
+                         value={this.state.eventRegistration}
+                         onChange={this.handleChange('eventRegistration')}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
             direction="row"
             justify="center"
             alignItems="center"
             className={classes.postButton}
+            style={{paddingTop: 30}}
           >
             <Grid item>
               <Button variant="contained"
