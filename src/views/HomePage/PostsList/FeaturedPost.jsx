@@ -29,7 +29,7 @@ const FeaturedPost = (props) => {
 
           <CardActionArea className={classes.cardActionArea} to={`/posts/${post.id}`} component={RouterLink}>
             {/*to={`/posts/${post.id}`} component={RouterLink}*/}
-            <Grid container>
+            <Grid container style={{width: '101%'}}>
               <Grid item xs={8} >
                 <CardContent>
                   <Typography component="h2" variant="h5">
@@ -38,7 +38,7 @@ const FeaturedPost = (props) => {
                   <Typography variant="subtitle1" color="textSecondary">
                     {postDate}
                   </Typography>
-                  <Typography variant="subtitle1" paragraph>
+                  <Typography variant="subtitle1" paragraph noWrap>
                     {post.postSubtitle}
                   </Typography>
                 </CardContent>

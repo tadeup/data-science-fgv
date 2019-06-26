@@ -37,5 +37,8 @@ export const styles = theme => ({
   sidebarContainer: {
     padding: '10px 0px 40px 20px',
     borderLeft: '1px solid #e0e0e0',
+  },
+  tagsChip : {
+    margin: '4px 8px 4px 0',
   }
 });

@@ -38,7 +38,7 @@ function Post(props) {
   //unmount effect
   useEffect( () => () => props.clearFirestore(), [] );
 
-  const sidebaLink = props => {
+  const sidebarLink = props => {
     return <Link {...props} />;
   };
 
@@ -78,7 +78,7 @@ function Post(props) {
                 <List>
                   {sidebarNews.map((el, key) => {
                     return(
-                      <ListItem button component={sidebaLink} to={`/posts/${el.id}`} key={key}>{el.postTitle}</ListItem>
+                      <ListItem button component={sidebarLink} to={`/posts/${el.id}`} key={key}>{el.postTitle}</ListItem>
                     )
                   })}
                 </List>
@@ -87,7 +87,7 @@ function Post(props) {
                   Tags
                 </Typography>
                 {post.tags.map((el, key) => {
-                  return <Chip key={key} label={el} variant="outlined"/>
+                  return <Chip key={key} label={el} variant="outlined" className={classes.tagsChip}/>
                 })}
               </div>
             </Grid>

@@ -5,7 +5,7 @@ import { compose } from 'redux'
 import { firestoreConnect, firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { actionTypes } from "redux-firestore";
 import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
-import { withStyles } from "@material-ui/core";
+import {List, ListItem, withStyles} from "@material-ui/core";
 import { styles } from "./styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -22,14 +22,6 @@ import Button from "@material-ui/core/es/Button";
 import { gotoNext, gotoPrev, leavePage } from "./redux/actions";
 import Loader from "../../components/Loader/Loader";
 
-const mostRead = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et massa leo',
-  'Nunc ullamcorper ultrices lacinia. Nulla a lacus pulvinar',
-  'Duis lacinia volutpat porta. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-  'Ut pharetra laoreet rutrum.',
-  'Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla aliquet lobortis est ac pulvinar.'
-];
-
 // const BackLink = props => <Link to={`/blog/page/${page - 1}`} {...props}/>;
 // const NextLink = props => <Link to={`/blog/page/${page + 1}`} {...props}/>;
 
@@ -38,7 +30,7 @@ const mostRead = [
   //   props.firestore.collection('posts').doc('EV96KXWBRGegptc8cX0S').get().then(data => console.log(data));
   //   console.log(props);
   // }
-
+const sidebarLink = props => {return <Link {...props} />;};
 
 class BlogPagination extends Component {
   state = { page: 1, isLoading: false };
@@ -70,12 +62,13 @@ class BlogPagination extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, sidebarNews } = this.props;
     const { isLoading } = this.state;
 
     if (isLoading || !isLoaded(this.props.posts)) return <Loader/> ;
 
     const posts = this.props.posts.map((post, key) => {return this.renderPost(post, key)});
+
     return (
       <React.Fragment>
         <CssBaseline/>
@@ -126,15 +119,15 @@ class BlogPagination extends Component {
               <div className={classes.sidebarContainer}>
                 <SearchField/>
                 <Typography component={'h3'} variant={'h5'}>
-                  Mais Lidas
+                  Novidades
                 </Typography>
-                <ol>
-                  {mostRead.map((el, key) => {
+                <List>
+                  {sidebarNews.map((el, key) => {
                     return(
-                      <li key={key}>{el}</li>
+                      <ListItem button component={sidebarLink} to={`/posts/${el.id}`} key={key}>{el.postTitle}</ListItem>
                     )
                   })}
-                </ol>
+                </List>
               </div>
             </Grid>
           </Grid>
@@ -163,6 +156,7 @@ const mapStateToProps = state => {
   return {
     posts: state.firestore.ordered.posts,
     lastPost: state.blogPage.lastPost,
+    sidebarNews: state.firestore.ordered.sidePosts ? state.firestore.ordered.sidePosts : []
   }
 };
 
@@ -185,6 +179,12 @@ export default compose(
         orderBy: ['postDate', 'desc'],
         limit: 10,
         startAfter: props.lastPost[props.lastPost.length - 1]
+      },
+      {
+        collection: 'posts',
+        limit: 5,
+        orderBy: ['postDate', 'desc'],
+        storeAs: 'sidePosts'
       }
     ]
   }),
