@@ -79,7 +79,6 @@ class PostsList extends Component {
           </Grid>
 
         </Grid>
-        {console.log(this.props.estado)}
       </React.Fragment>
     );
   }
@@ -102,7 +101,6 @@ const mapStateToProps = state => {
     featuredPosts: state.firestore.ordered.featuredPosts
       ? state.firestore.ordered.featuredPosts
       : [],
-    estado: state
   }
 };
 
