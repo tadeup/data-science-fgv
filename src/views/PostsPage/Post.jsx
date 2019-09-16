@@ -19,7 +19,7 @@ import Chip from "@material-ui/core/es/Chip/Chip";
 import SearchField from "../../components/SearchField/SearchField";
 import {actionTypes} from "redux-firestore";
 import Loader from "../../components/Loader/Loader";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown/with-html'
 import {Link} from "react-router-dom";
 
 function Post(props) {
@@ -65,7 +65,7 @@ function Post(props) {
                 />
 
                 <Typography component={'h1'} variant={"body1"}>
-                  <ReactMarkdown source={post.postBody}/>
+                  <ReactMarkdown source={post.postBody} escapeHtml={false}/>
                 </Typography>
               </div>
             </Grid>

@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect, firebaseConnect } from 'react-redux-firebase'
 import CssBaseline from "@material-ui/core/es/CssBaseline/CssBaseline";
-import { withStyles } from "@material-ui/core";
+import {Link, withStyles} from "@material-ui/core";
 import { styles } from "./styles";
 import Paper from "@material-ui/core/es/Paper/Paper";
 import Typography from "@material-ui/core/es/Typography/Typography";
+import Divider from '@material-ui/core/Divider';
 
 const AboutPage = (props) => {
   const { classes } = props;
@@ -51,19 +52,62 @@ const AboutPage = (props) => {
         <li>Inteligência Computacional e Aprendizagem de Máquina (Machine Learning);</li>
         <li>Inteligência Artificial (AI – Artificial Intelligence);</li>
         <li>Processamento de Linguagem Natural (NLP – Natural Language Processing);</li>
+        <li>Geoinformação e Estatística Espacial (GeoAnalytics);</li>
         <li>Internet das Coisas (IoT – Internet of Things);</li>
+        <li>Segurança e Proteção de Dados;</li>
         <li>Análise de Dados (Data Analytics);</li>
         <li>Visualização de Dados (Data Visualization);</li>
         <li>Computação na Nuvem (Cloud Computing);</li>
         <li>Linguagens de programação e ferramentas específicas;</li>
-        <li>Temas correlatos: Data Mining, Web Scrapping, Deep Learning, Estruturação e Limpeza de Dados, etc.</li>
+        <li>Temas correlatos: Linguagens de programação e ferramentas específicas , Computação na Nuvem, Data Mining, Text Mining, Web Scrapping, etc.</li>
       </ul>
+
       <br/>
 
-      <Typography component='p' variant='subtitle1'>
+      <Typography component='p' variant='subtitle1' gutterBottom>
         Para conhecer mais sobre as atividades e novidades do núcleo de estudos envie e-mail para <a href = "mailto: nds@fgv.br">nds@fgv.br</a>
       </Typography>
 
+      <Divider style={{marginTop: 16, marginBottom: 32}}/>
+
+      <Typography component="h1" variant="h3" gutterBottom>
+        Quadro de Pesquisadores
+      </Typography>
+
+      <Typography component="h1" variant="h5" gutterBottom>
+        Professores da FGV
+      </Typography>
+
+      <ul>
+        <li><Link href="https://eesp.fgv.br/integrante/afonso-de-campos-pinto">Afonso de Campos Pinto (EESP-FGV)</Link></li>
+        <li><Link href="https://eaesp.fgv.br/en/faculty/eduardo-rezende-francisco">Eduardo Francisco Rezende (EAESP-FGV)</Link></li>
+        <li><Link href="http://lattes.cnpq.br/6731656353508097">Edson Caoru Kitani (EESP-FGV)</Link></li>
+        <li><Link href="http://lattes.cnpq.br/6713612445238215">Élia Yathie Matsumoto (EESP-FGV)</Link></li>
+        <li><Link href="http://lattes.cnpq.br/1850958104170690">Gerson de Souza Faria (EESP-FGV)</Link></li>
+        <li><Link href="http://lattes.cnpq.br/1728809112622416">Luiz Henrique Moraes da Silva (EESP-FGV)</Link></li>
+        <li><Link href="http://lattes.cnpq.br/1484408005536961">Paulo do Canto Hubert Junior (EAESP-FGV)</Link></li>
+        <li><Link href="https://eesp.fgv.br/integrante/ricardo-ratner-rochman">Ricardo Ratner Rochman (EESP-FGV)</Link></li>
+      </ul>
+
+      <Typography component="h1" variant="h5" gutterBottom>
+        Doutorandos e Mestrandos
+      </Typography>
+      
+      <ul>
+        <li><Link href="http://lattes.cnpq.br/8726320988786268">Adriana Bezerra Bessa (EESP-FGV)</Link></li>
+      </ul>
+
+      <Typography component="h1" variant="h5" gutterBottom>
+        Alunos de Graduação
+      </Typography>
+
+      <ul>
+        <li>Alex Akira Okuno (EESP-FGV)</li>
+        <li>Gustavo Grivol (EESP-FGV)</li>
+        <li>Igor Peressinotto (EESP-FGV) - Assistente (apoio operacional)</li>
+        <li>Tadeu Lara (EESP-FGV) - Assistente (website e canais de comunicação)</li>
+      </ul>
+      
     </div>
   );
 };
