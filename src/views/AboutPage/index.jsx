@@ -80,13 +80,22 @@ const AboutPage = (props) => {
 
       <ul>
         <li><Link href="https://eesp.fgv.br/integrante/afonso-de-campos-pinto">Afonso de Campos Pinto (EESP-FGV)</Link></li>
+        <li><Link href="https://eaesp.fgv.br/en/faculty/andre-luiz-silva-samartini">André Luiz Silva Samartini (EAESP-FGV)</Link></li>
         <li><Link href="https://eaesp.fgv.br/en/faculty/eduardo-rezende-francisco">Eduardo Francisco Rezende (EAESP-FGV)</Link></li>
         <li><Link href="http://lattes.cnpq.br/6731656353508097">Edson Caoru Kitani (EESP-FGV)</Link></li>
         <li><Link href="http://lattes.cnpq.br/6713612445238215">Élia Yathie Matsumoto (EESP-FGV)</Link></li>
         <li><Link href="http://lattes.cnpq.br/1850958104170690">Gerson de Souza Faria (EESP-FGV)</Link></li>
+        <li><Link href="https://eaesp.fgv.br/professor/gustavo-correa-mirapalheta">Gustavo Correa Mirapalheta (EAESP-FGV)</Link></li>
+        <li><Link href="https://eaesp.fgv.br/professor/hitoshi-nagano">Hitoshi Nagano (EAESP-FGV)</Link></li>
+        <li><Link href="https://eaesp.fgv.br/professor/joao-luiz-chela">João Luiz Chela (EAESP-FGV)</Link></li>
+        <li><Link href="https://eesp.fgv.br/integrante/luis-meloni">Luís Meloni (EESP-FGV)</Link></li>
         <li><Link href="http://lattes.cnpq.br/1728809112622416">Luiz Henrique Moraes da Silva (EESP-FGV)</Link></li>
+        <li><Link href="#">Mauricio Irie (EESP-FGV)</Link></li>
         <li><Link href="http://lattes.cnpq.br/1484408005536961">Paulo do Canto Hubert Junior (EAESP-FGV)</Link></li>
+        <li><Link href="https://eesp.fgv.br/integrante/paulo-picchetti">Paulo Picchetti (EESP-FGV)</Link></li>
+        <li><Link href="https://eesp.fgv.br/integrante/ricardo-pereira-masini">Ricardo Pereira Masini (EESP-FGV)</Link></li>
         <li><Link href="https://eesp.fgv.br/integrante/ricardo-ratner-rochman">Ricardo Ratner Rochman (EESP-FGV)</Link></li>
+        <li><Link href="#">Roberto Barbosa Cintra (EESP-FGV)</Link></li>
       </ul>
 
       <Typography component="h1" variant="h5" gutterBottom>
