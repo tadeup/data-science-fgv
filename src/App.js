@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import { Provider } from 'react-redux'
 
 import indexRoutes from "./router/index.jsx";
+import AuthButton from "./components/AuthButton";
 
 const App = ({ store }) => (
   <Provider store={store}>
@@ -14,6 +15,7 @@ const App = ({ store }) => (
         }
       </Switch>
     </BrowserRouter>
+    <AuthButton/>
   </Provider>
 );
 

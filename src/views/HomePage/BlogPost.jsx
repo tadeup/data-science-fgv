@@ -4,24 +4,14 @@ import {withStyles} from "@material-ui/core";
 import {styles} from "./styles";
 import uuidv1 from "uuid";
 import firebase from 'firebase';
+import AuthButton from "../../components/AuthButton";
 
 const BlogPost = props => {
   const { classes } = props;
 
-  const config = {
-    apiKey: "AIzaSyCTY1qqnSRV29MiWqr0ohWniXI0YAkUoOc",
-    authDomain: "data-science-fgv.firebaseapp.com",
-    databaseURL: "https://data-science-fgv.firebaseio.com",
-    projectId: "data-science-fgv",
-    storageBucket: "data-science-fgv.appspot.com",
-    messagingSenderId: "443176770041"
-  };
-
-  firebase.initializeApp(config);
-  var db = firebase.firestore();
-
   return (
     <div>
+      <AuthButton/>
       <h1>title</h1>
       <p>body</p>
     </div>
