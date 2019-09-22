@@ -22,6 +22,7 @@ import Typography from "@material-ui/core/Typography";
 import Loader from "../../components/Loader/Loader";
 import NoPost from "../PostsPage/NoPost";
 import moment from "moment";
+import ReactMarkdown from "react-markdown/with-html";
 
 // const eventsList = [
 //   {
@@ -150,7 +151,8 @@ class _TEMPLATE extends Component {
                               <DescriptionIcon/>
                             </Grid>
                             <Grid item style={{maxWidth: '80%'}}>
-                              <Typography variant="subtitle1" align={'justify'} gutterBottom>{el.eventBody}</Typography>
+                              {/*<Typography variant="subtitle1" align={'justify'} gutterBottom>{el.eventBody}</Typography>*/}
+                              <ReactMarkdown source={el.eventBody} escapeHtml={false}/>
                             </Grid>
                           </Grid>
                         </Grid>
@@ -284,7 +286,8 @@ class _TEMPLATE extends Component {
                               <DescriptionIcon/>
                             </Grid>
                             <Grid item style={{maxWidth: '80%'}}>
-                              <Typography variant="subtitle1" align={'justify'} gutterBottom>{el.eventBody}</Typography>
+                              {/*<Typography variant="subtitle1" align={'justify'} gutterBottom>{el.eventBody}</Typography>*/}
+                              <ReactMarkdown source={el.eventBody} escapeHtml={false}/>
                             </Grid>
                           </Grid>
                         </Grid>
