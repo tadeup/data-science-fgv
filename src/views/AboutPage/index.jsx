@@ -80,6 +80,7 @@ const AboutPage = (props) => {
 
       <ul>
         <li><Link href="https://eesp.fgv.br/integrante/afonso-de-campos-pinto">Afonso de Campos Pinto (EESP-FGV)</Link></li>
+        <li><Link href="http://lattes.cnpq.br/5511026147289005">Alessandro Martim Marques (EESP-FGV)</Link></li>
         <li><Link href="https://eaesp.fgv.br/en/faculty/andre-luiz-silva-samartini">André Luiz Silva Samartini (EAESP-FGV)</Link></li>
         <li><Link href="https://eaesp.fgv.br/en/faculty/eduardo-rezende-francisco">Eduardo Francisco Rezende (EAESP-FGV)</Link></li>
         <li><Link href="http://lattes.cnpq.br/6731656353508097">Edson Caoru Kitani (EESP-FGV)</Link></li>
@@ -105,6 +106,14 @@ const AboutPage = (props) => {
       <ul>
         <li><Link href="http://lattes.cnpq.br/8726320988786268">Adriana Bezerra Bessa (EESP-FGV)</Link></li>
       </ul>
+
+        <Typography component="h1" variant="h5" gutterBottom>
+            Alumni
+        </Typography>
+
+        <ul>
+            <li>Greta Juipato</li>
+        </ul>
 
       <Typography component="h1" variant="h5" gutterBottom>
         Alunos de Graduação
