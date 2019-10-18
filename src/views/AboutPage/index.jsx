@@ -48,17 +48,15 @@ const AboutPage = (props) => {
         Dentre os temas e tecnologias abordados pelo NDS estão:
       </Typography>
       <ul>
-        <li>Big Data;</li>
+        <li>Big Data Analytics e Deep Learning;</li>
         <li>Inteligência Computacional e Aprendizagem de Máquina (Machine Learning);</li>
         <li>Inteligência Artificial (AI – Artificial Intelligence);</li>
         <li>Processamento de Linguagem Natural (NLP – Natural Language Processing);</li>
         <li>Geoinformação e Estatística Espacial (GeoAnalytics);</li>
         <li>Internet das Coisas (IoT – Internet of Things);</li>
         <li>Segurança e Proteção de Dados;</li>
-        <li>Análise de Dados (Data Analytics);</li>
-        <li>Visualização de Dados (Data Visualization);</li>
+        <li>Análise e Visualização de Dados (Data Analytics and Visualization);</li>
         <li>Computação na Nuvem (Cloud Computing);</li>
-        <li>Linguagens de programação e ferramentas específicas;</li>
         <li>Temas correlatos: Linguagens de programação e ferramentas específicas , Computação na Nuvem, Data Mining, Text Mining, Web Scrapping, etc.</li>
       </ul>
 
